@@ -1,0 +1,112 @@
+
+
+<div class="container my-4 text-center" >
+    <h1 class="my-4">Len Que Kinh Dich by Son Giang</h1>   
+    <div style="width: 500px" class="search">
+        <form style="width: 1000px; padding: 15px; margin: 0px" class="form-search d-flex flex-column justify-content-center">
+            <table class="table-search text-center">
+                <thead>
+                    <tr>
+                        <th>Lần gieo</th>
+                        <th>Hào</th>
+                        <th>Âm / Dương</th>
+                        <th>Hào Động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Lần 6</td>
+                        <td>Hào Thượng</td>
+                        <td>
+                            <select class="haoamduong" name="hao_6" id="hao_6" [(ngModel)]="hao_6">
+                                <option value="0" selected="selected">—　—</option>
+                                <option value="1">———</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input class="haodong" [(ngModel)]="dong6" [ngModelOptions]="{standalone:true}" (change)="dong6 = dong6 ? 1 : 0" 
+                            id="dong6" name="dong6" type="checkbox">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Lần 5</td>
+                        <td>Hào Ngũ</td>
+                        <td>
+                            <select class="haoamduong" name="hao5" id="hao5" [(ngModel)]="hao_5">
+                                <option value="0" selected="selected">—　—</option>
+                                <option value="1">———</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input class="haodong" data-val="true"  [(ngModel)]="dong5" [ngModelOptions]="{standalone:true}" (change)="dong5 = dong5 ? 1 : 0"
+                            id="dong5" name="dong5" type="checkbox">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Lần 4</td>
+                        <td>Hào Tứ</td>
+                        <td>
+                            <select class="haoamduong" name="hao4" id="hao4" [(ngModel)]="hao_4">
+                                <option value="0" selected="selected">—　—</option>
+                                <option value="1">———</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input class="haodong" data-val="true" [(ngModel)]="dong4" [ngModelOptions]="{standalone:true}" (change)="dong4 = dong4 ? 1 : 0"
+                            id="dong4" name="dong4" type="checkbox" >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Lần 3</td>
+                        <td>Hào Tam</td>
+                        <td>
+                            <select class="haoamduong" name="hao3" id="hao3" [(ngModel)]="hao_3">
+                                <option value="0" selected="selected">—　—</option>
+                                <option value="1">———</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input class="haodong" data-val="true"  [(ngModel)]="dong3" [ngModelOptions]="{standalone:true}" (change)="dong3 = dong3 ? 1 : 0"
+                            id="dong3" name="dong3" type="checkbox">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Lần 2</td>
+                        <td>Hào Nhị</td>
+                        <td>
+                            <select class="haoamduong" name="hao2" id="hao2" [(ngModel)]="hao_2">
+                                <option value="0" selected="selected">—　—</option>
+                                <option value="1">———</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input class="haodong" data-val="true"  [(ngModel)]="dong2" [ngModelOptions]="{standalone:true}" (change)="dong2 = dong2 ? 1 : 0"
+                            id="dong2" name="dong2" type="checkbox">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Lần 1</td>
+                        <td>Hào Sơ</td>
+                        <td>
+                            <select class="haoamduong" name="hao1" id="hao1" [(ngModel)]="hao_1">
+                                <option value="0" selected="selected">—　—</option>
+                                <option value="1">———</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input class="haodong" [(ngModel)]="dong1" [ngModelOptions]="{standalone:true}" (change)="dong1 = dong1 ? 1 : 0"
+                            id="dong1" name="dong1" type="checkbox">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="">
+                <div class="text-center">
+                    <button type="button" (click)="submitQue()" 
+                    name="submitsearch" class="btn btn-primary-kd" title="lap que">Lập quẻ</button>
+                </div>
+            </div>
+        </form>
+      </div>
+      
+</div>

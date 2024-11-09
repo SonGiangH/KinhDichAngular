@@ -1,0 +1,85 @@
+option {
+    font-weight: normal;
+    display: block;
+    padding-block-start: 0px;
+    padding-block-end: 1px;
+    min-block-size: 1.2em;
+    padding-inline: 2px;
+    white-space: nowrap;
+}
+
+.search select {
+    height: 39px;
+    outline: none;
+    margin-left: 2px;
+    width: 100%;
+    padding: 4px 10px;
+    border-radius: 9px;
+    font-size: 139%;
+    font-weight: bold;
+    color: #f00;
+    border: none;
+}
+
+select {
+    background-color: #fff;
+}
+
+.form-search {
+    margin: auto;
+    max-width: 1000px;
+    background: linear-gradient(to right, #e1cd99a3, #e9d7a4c2);
+    padding: 10px 68px;
+    border-radius: 10px;
+}
+
+.table-search {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.haoamduong {
+    width: unset !important;
+}
+
+.haodong {
+    width: 50% !important;
+}
+
+.form-search input {
+    height: 39px;
+    outline: none;
+    margin-left: 2px;
+    width: 100%;
+    padding: 4px 10px;
+    border-radius: 9px;
+    font-size: 139%;
+    font-weight: bold;
+    color: #f00;
+    border: none;
+}
+
+table td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #fff;
+}
+
+button[name="submitsearch"] {
+    cursor: pointer;
+    padding: 5px 15px;
+    font-weight: bold;
+    min-height: 48px;
+    background-color: #ca1313;
+    color: #ffe693;
+    min-width: 250px;
+    font-size: 120%;
+    text-transform: uppercase;
+    background: url(../../assets/button-tim-kiem.webp) no-repeat center center;
+    background-size: cover;
+    border: none;
+}

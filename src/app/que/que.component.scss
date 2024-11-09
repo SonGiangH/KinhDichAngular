@@ -1,0 +1,79 @@
+.search {
+    background: linear-gradient(to right, #e1cd99a3, #e9d7a4c2);
+}
+
+table td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #fff;
+}
+
+.tuoiNguHanh :hover {
+    cursor: pointer;
+}
+
+.table-search {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.red-text {
+    color: red;
+    font-weight: bold;
+}
+
+.table-que-bien {
+    width: 350px;
+    margin-left: 20%;
+}
+
+.table-que-bien td {
+    padding: 8 15px;
+}
+
+.table-search-goc th {
+    padding: 0 10px;
+}
+
+.table-search-goc {
+    margin-right: 10px;
+}
+
+.phan-ngam {
+    text-align: left;
+    padding-left: 10px;
+}
+
+.phan-ngam p {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.phan-ngam-hao p {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.dung-than {
+    color: hotpink;
+    font-weight: bold;
+}
+
+.nguyen-than {
+    color: #1E90FF;
+    font-weight: bold;
+}
+
+.cuu-than {
+    color: green;
+    font-weight: bold;
+}
+
+.ky-than {
+    color: orange;
+    font-weight: bold;
+}
