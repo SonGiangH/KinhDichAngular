@@ -10,7 +10,10 @@ export class QueDTO {
     dong_3: number;
     dong_4: number;
     dong_5: number;
-    dong_6: number;    
+    dong_6: number;   
+    selectedDate: Date;
+    selectedTime: string
+
   
     constructor(data: any) {
       this.hao_1 = data.hao_1;
@@ -25,5 +28,7 @@ export class QueDTO {
       this.dong_4 = data.dong_4;
       this.dong_5 = data.dong_5;
       this.dong_6 = data.dong_6;
+      this.selectedDate = data.selectedDate;
+      this.selectedTime = data.selectedTime
     }
   }

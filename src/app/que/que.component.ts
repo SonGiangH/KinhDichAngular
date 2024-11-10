@@ -12,9 +12,13 @@ import * as _ from 'lodash';
 
 export class QueComponent implements OnInit {
   responseData :any
-  queGoc : any ={}  // Doi tuong luu que Goc
-  queBien: any ={}  // Doi tuong luu que Bien
-  cloneQueGoc: any = {} // Doi tuong clone que Goc
+  queGoc : any ={}        // Doi tuong luu que Goc
+  queBien: any ={}        // Doi tuong luu que Bien
+  cloneQueGoc: any = {}   // Doi tuong clone que Goc
+  duongLich: any = {}     // Doi tuong luu ngay thang nam Duong Lich
+  amLich : any = {}       // Doi tuong luu ngay thang nam Am Lich
+  timeLapQue : any = {}   // Doi tuong luu gio lap que
+  vuongKhac: any = {}     // Doi tuong luu vuongkhac
 
   @ViewChildren('tuoiNguHanhElement') tuoiNguHanhElements!: QueryList<ElementRef>;      // Get td chua Ngu Hanh
   @ViewChildren('LucThanElement') lucThanElements!: QueryList<ElementRef>;              // Get td chua Luc Than
@@ -32,6 +36,9 @@ export class QueComponent implements OnInit {
     if (this.responseData) {
       this.queGoc = this.responseData.QueGoc || {}
       this.queBien = this.responseData.QueBien || {}
+      this.duongLich = this.responseData.DuongLich || {}
+      this.amLich = this.responseData.AmLich || {}
+      this.timeLapQue = this.responseData.GioLapQue || {}
     }
     
     // clone queGoc tu API- phai them this. vi cloneQueGoc la member of class
@@ -44,8 +51,56 @@ export class QueComponent implements OnInit {
       this.cloneQueGoc.thanHao5 = ''
       this.cloneQueGoc.thanHao6 = ''
       
-      console.log('que Goc Clone: '+ JSON.stringify(this.cloneQueGoc));
+      // console.log('que Goc Clone: '+ JSON.stringify(this.cloneQueGoc));
+
+     // Convert Can Chi    
+    const CAN = ["Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ", "Canh", "Tân", "Nhâm", "Quý"];
+    const CHI = ["Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi"];
+
+    // Tính Can Chi cho năm - write to amLich object
+    const yearAmLichCan = CAN[(this.amLich.lunarYear + 6) % 10];
+    const yearAmLichChi = CHI[(this.amLich.lunarYear + 8) % 12];
+    this.amLich.yearAmLichCan =  yearAmLichCan;
+    this.amLich.yearAmLichChi = yearAmLichChi;
+
+    // Tính Can Chi cho tháng
+    const Y = (this.amLich.lunarMonth + 1) % 12;
+    const X = (this.amLich.lunarYear*12+ this.amLich.lunarMonth+3) % 10;
+      
+    this.amLich.monthAmLichCan = CAN[X];
+    this.amLich.monthAmLichChi = CHI[Y];
+
+    // Tính Can Chi cho ngày (input là ngày Dương lịch -> Can Chi ngày âm lịch)
+    const y = this.duongLich.solarYear;
+    const m = this.duongLich.solarMonth;
+    const d = this.duongLich.solarDay;
+    const Z = this.INT(this.UniversalToJD(d,m,y)+9.5) % 10;
+    const T = this.INT(this.UniversalToJD(d,m,y) + 1.5) % 12;
+
+    this.amLich.dayAmLichCan =  CAN[Z];    
+    this.amLich.dayAmLichChi = CHI[T];
   }  
+
+  INT(d: number) :number {
+		return Math.floor(d);
+  }
+
+  UniversalToJD(D: number, M: number, Y: number): number {
+    let JD: number;
+    if (Y > 1582 || (Y === 1582 && M > 10) || (Y === 1582 && M === 10 && D > 14)) {
+        JD = 367 * Y 
+            - Math.floor(7 * (Y + Math.floor((M + 9) / 12)) / 4) 
+            - Math.floor(3 * (Math.floor((Y + (M - 9) / 7) / 100) + 1) / 4) 
+            + Math.floor(275 * M / 9) 
+            + D + 1721028.5;
+    } else {
+        JD = 367 * Y 
+            - Math.floor(7 * (Y + 5001 + Math.floor((M - 9) / 7)) / 4) 
+            + Math.floor(275 * M / 9) 
+            + D + 1729776.5;
+    }
+    return JD;
+}
  
   checkRelationship(selectedNguHanh: string): void {
     const sinhRelations: {[key: string] : string} = {
@@ -79,6 +134,39 @@ export class QueComponent implements OnInit {
     })
   }
 
+  //Duoc Sinh-Khac Relation
+  dcSinhRelations: {[key: string] : string} = {
+    'Kim' : 'Thổ',
+    'Thủy' : 'Kim',
+    'Mộc' : 'Thủy',
+    'Hỏa' : 'Mộc',
+    'Thổ' : 'Hỏa'
+  };
+
+  biKhacRelations: {[key: string] : string} = {
+    'Kim' : 'Hỏa',
+    'Mộc' : 'Kim',
+    'Thổ' : 'Mộc',
+    'Thủy' : 'Thổ',
+    'Hỏa' : 'Thủy'
+  };
+
+  tuoiHopPairs = [
+      ["NGỌ" , "MÙI"],
+      ["TỴ", "THÂN"],
+      ["THÌN" , "DẬU"],
+      ["MÃO", "TUẤT"],
+      ["DẦN","HỢI"],
+      ["SỬU","TÍ"]
+  ]
+
+  checkHopTuoi(tuoi1: string, tuoi2: string) : boolean {
+    return this.tuoiHopPairs.some(pair => 
+      (pair[0] === tuoi1 && pair[1] === tuoi2) ||
+      (pair[0] === tuoi2 && pair[1] === tuoi1)
+    )
+  }
+  
   // Check Luc Than Relationship
   checkLucThanRelationship(selectedLucThan: any) : void {
     const sinhRelations : {[key: string] : string} = {
@@ -115,11 +203,11 @@ export class QueComponent implements OnInit {
 
   // Check Phản Ngâm Tượng Quẻ theo Cung
   phanNgamPairs = [
-      ["CÀN" , "TỐN"],
-      ["KHẢM", "LY"],
-      ["CẤN" , "KHÔN"],
-      ["ĐOÀI", "CHẤN"]
-  ]
+    ["CÀN" , "TỐN"],
+    ["KHẢM", "LY"],
+    ["CẤN" , "KHÔN"],
+    ["ĐOÀI", "CHẤN"]
+  ]  
 
   checkPhanNgam(cung1: string, cung2: string) : boolean {
     return this.phanNgamPairs.some(pair => 
@@ -279,5 +367,68 @@ export class QueComponent implements OnInit {
       element.nativeElement.style.backgroundColor = '';
       element.nativeElement.style.color = '';
     })
+  }
+
+  // Hien thi Ngu Hanh cua Nhat Nguyet
+  getNguHanhDayMonth(dayAmLichChi: string): string {
+    switch (dayAmLichChi) {
+        case "Dần":
+        case "Mão":
+            return "Mộc";
+        case "Sửu":
+        case "Tuất":
+        case "Mùi":
+        case "Thìn":
+            return "Thổ";
+        case "Tý":
+        case "Hợi":
+            return "Thủy";
+        case "Dậu":
+        case "Thân":
+            return "Kim";
+        case "Ngọ":
+        case "Tỵ":
+            return "Hỏa";
+        default:
+            return "";
+    }
+  }
+
+  // Check Nhật/ Nguyệt tương sinh - khắc (Nhật - Ngày) (Nguyệt-Tháng)
+  checkVuongKhac(tuoiHao: any) : string {
+    const nhat = this.getNguHanhDayMonth(this.amLich.dayAmLichChi);
+    const nguyet = this.getNguHanhDayMonth(this.amLich.monthAmLichChi);
+
+    let nhatEffect = '';
+    let nguyetEffect = '';
+  
+          // Kiểm tra Nhật ảnh hưởng
+          if (this.amLich.dayAmLichChi === tuoiHao.name) {
+              nhatEffect = 'Nhật Thần';
+          } else if (nhat === tuoiHao.nguHanh.nguHanhName) {
+              nhatEffect = 'Nhật Vượng';
+          } else if (nhat == this.dcSinhRelations[tuoiHao.nguHanh.nguHanhName]) {
+              nhatEffect = 'Nhật Sinh';
+          } else if (nhat == this.biKhacRelations[tuoiHao.nguHanh.nguHanhName]) {
+              nhatEffect = 'Nhật Khắc';
+          } else if (this.checkHopTuoi(this.amLich.dayAmLichChi, tuoiHao.name)) {
+              nhatEffect = 'Nhật Hợp';
+          }
+          
+          // Kiểm tra Nguyệt ảnh hưởng
+          if (this.amLich.monthAmLichChi === tuoiHao.name) {
+              nguyetEffect = 'Nguyệt Kiến';
+          } else if (nguyet === tuoiHao.name) {
+              nguyetEffect = 'Nguyệt Vượng';
+          } else if (nguyet === this.dcSinhRelations[tuoiHao.nguHanh.nguHanhName]) {
+              nguyetEffect = 'Nguyệt Sinh';
+          } else if (nguyet === this.biKhacRelations[tuoiHao.nguHanh.nguHanhName]) {
+              nguyetEffect = 'Nguyệt Khắc';
+          } else if (this.checkHopTuoi(this.amLich.monthAmLichChi, tuoiHao.name)) {
+              nguyetEffect = 'Nguyệt Hợp';
+          }
+          
+          console.log(`${nhatEffect}, ${nguyetEffect}`);
+    return `${nhatEffect}  ${nguyetEffect}`;
   }
 }

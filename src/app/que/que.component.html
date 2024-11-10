@@ -1,6 +1,19 @@
-<div class="container-fluid my-4 text-center d-flex justify-content-center">
-    <div style="width: 1300px" class="search d-flex flex-column">
-        <div class="d-flex justify-content-between">
+<div class="container-fluid my-4 text-center d-flex justify-content-center" style="position: absolute; width: 100%;">
+    <div class="search d-flex flex-column pt-3">
+        <!-- Ngay thang nam  -->
+        <div class="nhat-nguyet d-flex flex-column justify-content-center">
+            <p>Thời gian lập quẻ: {{timeLapQue}} Ngày {{duongLich.solarDay}} Tháng {{duongLich.solarMonth}} Năm {{duongLich.solarYear}} </p>
+            <p>Dương lịch: Ngày {{duongLich.solarDay}} Tháng {{duongLich.solarMonth}} Năm {{duongLich.solarYear}} </p>
+            <p>Âm Lịch: Ngày {{amLich.lunarDay}} Tháng {{amLich.lunarMonth}} Năm {{amLich.lunarYear}}</p>
+            <div class="d-flex justify-content-center can-chi">
+                Can Chi: Ngày&nbsp;<p class="text-danger fw-bold fst-italic">{{amLich.dayAmLichCan}} {{amLich.dayAmLichChi}} ({{getNguHanhDayMonth(amLich.dayAmLichChi)}}) </p>
+                Tháng &nbsp;<p class="text-success fw-bold fst-italic">{{amLich.monthAmLichCan}} {{amLich.monthAmLichChi}} ({{getNguHanhDayMonth(amLich.monthAmLichChi)}})</p>  
+                Năm  &nbsp;<p class="fw-bold fst-italic">{{amLich.yearAmLichCan}} {{amLich.yearAmLichChi}}</p>
+            </div>
+        </div>
+
+        <!-- Thong tin QUE -->
+        <div class="d-flex mb-3 justify-content-between">
             <!-- Que GOC -->
             <div class="que-goc">
                 <div class="d-flex flex-column">
@@ -12,16 +25,22 @@
                 </div>
                 <table class="table-search text-center table-search-goc">
                     <thead>
-                        <tr>
+                        <tr class="small">
                             <th>Lục Thú</th>
                             <th>Dụng Thần</th>
                             <th>Thế - Ứng</th>
                             <th>Lục Thân</th>
                             <th>Can-Chi</th>
                             <th>Phục Thần</th>
+                            <th>Nhật</th>
+                            <th>Nguyệt</th>
+                            <th>Vượng Khắc</th>
+                            <th>Tứ Thời Vượng Tướng</th>
+                            <th>Hóa</th>
+                            <th>Lục Hợp / Xung</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="small">
                         <tr>
                             <td></td>
                             <td #thanHaoElement (click)="onClickHao(6)" 
@@ -51,6 +70,12 @@
                                 (click)="checkLucThanRelationship(queGoc.lucThan.phuc6)" #LucThanElement>
                                 {{ queGoc.lucThan.phuc6 }}
                             </td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao6)}}</td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
                         </tr>
                         <tr>
                             <td></td>
@@ -81,6 +106,12 @@
                                 (click)="checkLucThanRelationship(queGoc.lucThan.phuc5)" #LucThanElement>
                                 {{ queGoc.lucThan.phuc5 }}
                             </td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao5)}}</td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
                         </tr>
                         <tr>
                             <td></td>
@@ -111,6 +142,12 @@
                                 (click)="checkLucThanRelationship(queGoc.lucThan.phuc4)" #LucThanElement>
                                 {{ queGoc.lucThan.phuc4 }}
                             </td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao4)}}</td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
                         </tr>
                         <tr>
                             <td></td>
@@ -141,6 +178,12 @@
                                 (click)="checkLucThanRelationship(queGoc.lucThan.phuc3)" #LucThanElement>
                                 {{ queGoc.lucThan.phuc3 }}
                             </td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao3)}}</td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
                         </tr>
                         <tr>
                             <td></td>
@@ -171,6 +214,12 @@
                                 (click)="checkLucThanRelationship(queGoc.lucThan.phuc2)" #LucThanElement>
                                 {{ queGoc.lucThan.phuc2 }}
                             </td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao2)}}</td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
                         </tr>
                         <tr>
                             <td></td>
@@ -201,10 +250,83 @@
                                 (click)="checkLucThanRelationship(queGoc.lucThan.phuc1)" #LucThanElement>
                                 {{ queGoc.lucThan.phuc1 }}
                             </td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao1)}}</td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
                         </tr>
                     </tbody>
                 </table>
-            </div>           
+            </div> 
+            
+            <!-- Nhat Nguyet -->
+
+            <!-- <div class="que-goc" style="padding-top: 75px;">                
+                <table class="table-search text-center table-search-goc">
+                    <thead>
+                        <tr class="small">
+                            <th>Nhật</th>
+                            <th>Nguyệt</th>
+                            <th>Vượng Khắc</th>
+                            <th>Tứ Thời Vượng Tướng</th>
+                            <th>Hóa</th>
+                            <th>Lục Hợp / Xung</th>
+                        </tr>
+                    </thead>
+                    <tbody class="small">
+                        <tr>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao6)}}</td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                        </tr>
+                        <tr>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao5)}}</td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                        </tr>
+                        <tr>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao4)}}</td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                        </tr>
+                        <tr>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao3)}}</td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                        </tr>
+                        <tr>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao2)}}</td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                        </tr>
+                        <tr>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao1)}}</td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                            <td>Dummmy</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div> -->
 
             <!-- Que BIEN -->
             <div class="que-bien d-flex flex-column justify-content-start">
@@ -217,12 +339,12 @@
                 </div>
                 <table class="table-search text-center table-que-bien">
                     <thead>
-                        <tr>
-                            <th>Lục Thân (Theo Quẻ Gốc)</th>
+                        <tr class="small">
+                            <th>Lục Thân (Quẻ Gốc)</th>
                             <th>Can-Chi</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="small">
                         <tr>
                             <td>{{ queGoc.lucThan.hao6 }}</td>
                             <td name="tuoiNguHanh" [attr.data-nguHanh]="
@@ -311,8 +433,10 @@
                     </tbody>
                 </table>
             </div>
+
         </div>
 
+        <!-- Check tuong que -->
         <div class="d-flex">
             <!-- Check Tuong Que -->
             <div class="d-flex flex-column justify-content-start phan-ngam">

@@ -42,7 +42,18 @@ select {
 }
 
 .haoamduong {
-    width: unset !important;
+    width: 100px !important;
+    text-align: center;
+}
+
+.haoOption {
+    width: 80px;
+}
+
+.haoamduong option {
+    display: flex;
+    align-items: center;
+    justify-items: center;
 }
 
 .haodong {

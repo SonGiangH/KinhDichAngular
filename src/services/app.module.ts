@@ -9,6 +9,10 @@ import { QueService } from './que.service';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from 'src/app/app/app.component';
 import { RouterOutlet } from '@angular/router';
+import { MatDatepickerModule} from '@angular/material/datepicker';
+import { MatInputModule} from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,8 @@ import { RouterOutlet } from '@angular/router';
     QueComponent
   ],
   imports: [
-    BrowserModule,FormsModule, HttpClientModule, AppRoutingModule, RouterModule, RouterOutlet
+    BrowserModule,FormsModule, HttpClientModule, AppRoutingModule, RouterModule, RouterOutlet,
+    MatDatepickerModule, MatInputModule, MatNativeDateModule, BrowserAnimationsModule
   ],
   providers: [QueService],
   bootstrap: [AppComponent]

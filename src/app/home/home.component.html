@@ -2,6 +2,27 @@
 
 <div class="container my-4 text-center" >
     <h1 class="my-4">Len Que Kinh Dich by Son Giang</h1>   
+    <!-- Ngay thang nam lap que -->
+     <div>
+        <h3>Ngày giờ lập quẻ</h3>
+        <div>
+            <form>
+                <!-- Thêm trường để chọn ngày -->
+                <mat-form-field appearance="fill">
+                  <mat-label>Chọn ngày và giờ</mat-label>
+                  <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" name="selectedDate">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              
+                <!-- Thêm trường để chọn giờ -->
+                <mat-form-field appearance="fill">
+                  <mat-label>Giờ</mat-label>
+                  <input matInput placeholder="HH:mm" [(ngModel)]="selectedTime" name="selectedTime" type="time">
+                </mat-form-field>
+              </form>
+        </div>
+     </div>
     <div style="width: 500px" class="search">
         <form style="width: 1000px; padding: 15px; margin: 0px" class="form-search d-flex flex-column justify-content-center">
             <table class="table-search text-center">
@@ -19,8 +40,8 @@
                         <td>Hào Thượng</td>
                         <td>
                             <select class="haoamduong" name="hao_6" id="hao_6" [(ngModel)]="hao_6">
-                                <option value="0" selected="selected">—　—</option>
-                                <option value="1">———</option>
+                                <option class="haoOption" value="0" selected="selected">&boxh;&nbsp;&nbsp;&nbsp;&boxh;</option>
+                                <option class="haoOption" value="1">&boxh;&boxh;&boxh;</option>
                             </select>
                         </td>
                         <td>
@@ -33,8 +54,8 @@
                         <td>Hào Ngũ</td>
                         <td>
                             <select class="haoamduong" name="hao5" id="hao5" [(ngModel)]="hao_5">
-                                <option value="0" selected="selected">—　—</option>
-                                <option value="1">———</option>
+                                <option class="haoOption" value="0" selected="selected">&boxh;&nbsp;&nbsp;&nbsp;&boxh;</option>
+                                <option class="haoOption" value="1">&boxh;&boxh;&boxh;</option>
                             </select>
                         </td>
                         <td>
@@ -47,8 +68,8 @@
                         <td>Hào Tứ</td>
                         <td>
                             <select class="haoamduong" name="hao4" id="hao4" [(ngModel)]="hao_4">
-                                <option value="0" selected="selected">—　—</option>
-                                <option value="1">———</option>
+                                <option class="haoOption" value="0" selected="selected">&boxh;&nbsp;&nbsp;&nbsp;&boxh;</option>
+                                <option class="haoOption" value="1">&boxh;&boxh;&boxh;</option>
                             </select>
                         </td>
                         <td>
@@ -61,8 +82,8 @@
                         <td>Hào Tam</td>
                         <td>
                             <select class="haoamduong" name="hao3" id="hao3" [(ngModel)]="hao_3">
-                                <option value="0" selected="selected">—　—</option>
-                                <option value="1">———</option>
+                                <option class="haoOption" value="0" selected="selected">&boxh;&nbsp;&nbsp;&nbsp;&boxh;</option>
+                                <option class="haoOption" value="1">&boxh;&boxh;&boxh;</option>
                             </select>
                         </td>
                         <td>
@@ -75,8 +96,8 @@
                         <td>Hào Nhị</td>
                         <td>
                             <select class="haoamduong" name="hao2" id="hao2" [(ngModel)]="hao_2">
-                                <option value="0" selected="selected">—　—</option>
-                                <option value="1">———</option>
+                                <option class="haoOption" value="0" selected="selected">&boxh;&nbsp;&nbsp;&nbsp;&boxh;</option>
+                                <option class="haoOption" value="1">&boxh;&boxh;&boxh;</option>
                             </select>
                         </td>
                         <td>
@@ -89,8 +110,8 @@
                         <td>Hào Sơ</td>
                         <td>
                             <select class="haoamduong" name="hao1" id="hao1" [(ngModel)]="hao_1">
-                                <option value="0" selected="selected">—　—</option>
-                                <option value="1">———</option>
+                                <option class="haoOption" value="0" selected="selected">&boxh;&nbsp;&nbsp;&nbsp;&boxh;</option>
+                                <option class="haoOption" value="1">&boxh;&boxh;&boxh;</option>
                             </select>
                         </td>
                         <td>

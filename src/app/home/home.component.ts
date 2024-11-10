@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { QueDTO } from 'src/dtos/que.dto';
 import { QueService } from 'src/services/que.service';
 import { NavigationEnd, Router } from '@angular/router';
+import { now } from 'lodash';
 
 @Component({
   selector: 'app-home',
@@ -24,6 +25,9 @@ export class HomeComponent {
     dong5: number;
     dong6: number;
 
+    selectedDate: Date;
+    selectedTime: string;
+
     constructor(private queService: QueService, private router: Router) {
       this.hao_1 = 1; // initialize value = gia tri ban dau
       this.hao_2 = 0;
@@ -37,6 +41,10 @@ export class HomeComponent {
       this.dong4 = 0;
       this.dong5 = 0;
       this.dong6 = 0;
+
+      // // initialize value = gia tri ban dau Date Time
+      this.selectedDate = new Date();
+      this.selectedTime = '';
     }  
 
   // Submit Que Fuction
@@ -53,8 +61,12 @@ export class HomeComponent {
       "dong_3" : this.dong3,
       "dong_4" : this.dong4,
       "dong_5" : this.dong5,
-      "dong_6" : this.dong6
+      "dong_6" : this.dong6,
+      "selectedDate": this.selectedDate,
+      "selectedTime": this.selectedTime
     }
+
+    console.log(queDTO);
     
     this.queService.checkQue(queDTO).subscribe({
       next: (response:any) => {       

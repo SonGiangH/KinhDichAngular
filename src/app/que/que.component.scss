@@ -1,5 +1,7 @@
 .search {
     background: linear-gradient(to right, #e1cd99a3, #e9d7a4c2);
+    width: 1400px;
+    padding-bottom: 20px;
 }
 
 table td {
@@ -16,10 +18,21 @@ table td {
 .table-search {
     width: 100%;
     max-width: 100%;
-    margin-bottom: 20px;
     border-spacing: 0;
     border-collapse: collapse;
 }
+
+.table-search-goc {
+    margin-right: 10px;
+}
+
+table.fixed {table-layout:fixed; width:1000px;}/*Setting the table width is important!*/
+table.fixed td {overflow:hidden;}/*Hide text outside the cell.*/
+table.fixed td:nth-of-type(1) {width:20px;}/*Setting the width of column 1.*/
+table.fixed td:nth-of-type(2) {width:20px;}/*Setting the width of column 2.*/
+table.fixed td:nth-of-type(3) {width:40px;}/*Setting the width of column 3.*/
+table.fixed td:nth-of-type(9) {width:70px;}
+table.fixed td:nth-of-type(8) {width:60px;}
 
 .red-text {
     color: red;
@@ -27,8 +40,7 @@ table td {
 }
 
 .table-que-bien {
-    width: 350px;
-    margin-left: 20%;
+    width: 280px;
 }
 
 .table-que-bien td {
@@ -39,9 +51,7 @@ table td {
     padding: 0 10px;
 }
 
-.table-search-goc {
-    margin-right: 10px;
-}
+
 
 .phan-ngam {
     text-align: left;
@@ -76,4 +86,20 @@ table td {
 .ky-than {
     color: orange;
     font-weight: bold;
+}
+
+.can-chi p {
+    padding-right: 10px;
+}
+
+.nhat-nguyet {
+    // background-color: aliceblue;
+    width: 500px;
+    text-align: center;
+    align-items: center;
+    position: relative;
+    left: 20%;
+    border-style: solid;
+    margin-bottom: 10px;
+    padding-top: 10px;
 }
