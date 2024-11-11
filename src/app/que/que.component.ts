@@ -151,6 +151,22 @@ export class QueComponent implements OnInit {
     'Hỏa' : 'Thủy'
   };
 
+  khacRelations: {[key: string] : string} = {
+    'Kim' : 'Mộc',
+    'Mộc' : 'Thổ',
+    'Thổ' : 'Thủy',
+    'Thủy' : 'Hỏa',
+    'Hỏa' : 'Kim'
+  };
+
+  sinhRelations: {[key: string] : string} = {
+    'Kim' : 'Thủy',
+    'Thủy' : 'Mộc',
+    'Mộc' : 'Hỏa',
+    'Hỏa' : 'Thổ',
+    'Thổ' : 'Kim'
+  };
+
   tuoiHopPairs = [
       ["NGỌ" , "MÙI"],
       ["TỴ", "THÂN"],
@@ -162,8 +178,8 @@ export class QueComponent implements OnInit {
 
   checkHopTuoi(tuoi1: string, tuoi2: string) : boolean {
     return this.tuoiHopPairs.some(pair => 
-      (pair[0] === tuoi1 && pair[1] === tuoi2) ||
-      (pair[0] === tuoi2 && pair[1] === tuoi1)
+      (pair[0].toUpperCase() === tuoi1.toUpperCase() && pair[1].toUpperCase() === tuoi2.toUpperCase()) ||
+      (pair[0].toUpperCase() === tuoi2 && pair[1].toUpperCase() === tuoi1.toUpperCase())
     )
   }
   
@@ -370,8 +386,8 @@ export class QueComponent implements OnInit {
   }
 
   // Hien thi Ngu Hanh cua Nhat Nguyet
-  getNguHanhDayMonth(dayAmLichChi: string): string {
-    switch (dayAmLichChi) {
+  getNguHanhDayMonth(chi: string): string {
+    switch (chi) {
         case "Dần":
         case "Mão":
             return "Mộc";
@@ -428,7 +444,56 @@ export class QueComponent implements OnInit {
               nguyetEffect = 'Nguyệt Hợp';
           }
           
-          console.log(`${nhatEffect}, ${nguyetEffect}`);
     return `${nhatEffect}  ${nguyetEffect}`;
   }
+
+  // Check Tu Thoi Vuong Tuong
+  checkTuThoiVuongTuong(nguHanh: string): string {
+      const nguyet = this.getNguHanhDayMonth(this.amLich.monthAmLichChi).toUpperCase();   // Tứ Thời Vượng Tướng chỉ xét tác động của Nguyệt lên mỗi Hào
+      
+      if (nguyet === this.dcSinhRelations[nguHanh].toUpperCase()) return "Tướng"
+        else if (nguyet === this.khacRelations[nguHanh].toUpperCase()) return "Tù"
+        else if (nguyet === nguHanh.toUpperCase()) return "Vượng"
+        else if (nguyet === this.sinhRelations[nguHanh].toUpperCase()) return "Hưu"
+        else if (nguyet === this.biKhacRelations[nguHanh].toUpperCase()) return "Tử"
+      
+      return '';
+  }
+
+  // Vong Truong Sinh
+  checkVongTruongSinh(tuoiHaoNguHanh: string, nhatNguyetChi: string): string {
+    const vongTruongSinh = [
+        'Trường Sinh', 'Mộc Dục', 'Quan Đới', 'Lâm Quan', 'Đế Vượng',
+        'Suy', 'Bệnh', 'Tử', 'Mộ', 'Tuyệt', 'Thai', 'Dưỡng'
+    ];
+
+    const chiCycle = [
+        "Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi"
+    ];
+
+    // Điểm bắt đầu của vòng Trường Sinh dựa trên ngũ hành
+    const startChiIndex: { [key: string]: string } = {
+        'Mộc': 'Hợi',
+        'Hỏa': 'Dần',
+        'Kim': 'Tỵ',
+        'Thổ': 'Thân',
+        'Thủy': 'Thân'
+    };
+
+    // Lấy điểm bắt đầu theo ngũ hành
+    const startChi = startChiIndex[tuoiHaoNguHanh];
+
+    if (!startChi) {
+        return "";
+    }
+
+    // Tìm vị trí bắt đầu của vòng Trường Sinh trong chuỗi chiCycle
+    const startIndex = chiCycle.indexOf(startChi);
+    const currentIndex = chiCycle.indexOf(nhatNguyetChi);
+
+    // Tính toán vị trí của trạng thái Trường Sinh
+    const position = (currentIndex - startIndex + 12) % 12;
+
+    return vongTruongSinh[position];
+}
 }

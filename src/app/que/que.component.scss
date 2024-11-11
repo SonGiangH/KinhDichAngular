@@ -31,8 +31,8 @@ table.fixed td {overflow:hidden;}/*Hide text outside the cell.*/
 table.fixed td:nth-of-type(1) {width:20px;}/*Setting the width of column 1.*/
 table.fixed td:nth-of-type(2) {width:20px;}/*Setting the width of column 2.*/
 table.fixed td:nth-of-type(3) {width:40px;}/*Setting the width of column 3.*/
-table.fixed td:nth-of-type(9) {width:70px;}
-table.fixed td:nth-of-type(8) {width:60px;}
+
+table.table-search td:nth-of-type(2) {width: 120px;}
 
 .red-text {
     color: red;

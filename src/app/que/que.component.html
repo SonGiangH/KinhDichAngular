@@ -35,7 +35,7 @@
                             <th>Nhật</th>
                             <th>Nguyệt</th>
                             <th>Vượng Khắc</th>
-                            <th>Tứ Thời Vượng Tướng</th>
+                            <th>TT Vượng Tướng</th>
                             <th>Hóa</th>
                             <th>Lục Hợp / Xung</th>
                         </tr>
@@ -70,12 +70,14 @@
                                 (click)="checkLucThanRelationship(queGoc.lucThan.phuc6)" #LucThanElement>
                                 {{ queGoc.lucThan.phuc6 }}
                             </td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
+                            <td>{{checkVongTruongSinh(queGoc.queTuoi.tuoiHao6.nguHanh.nguHanhName,amLich.dayAmLichChi)}}</td>
+                            <td>{{checkVongTruongSinh(queGoc.queTuoi.tuoiHao6.nguHanh.nguHanhName,amLich.monthAmLichChi)}}</td>
                             <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao6)}}</td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
+                            <td>{{checkTuThoiVuongTuong(queGoc.queTuoi.tuoiHao6.nguHanh.nguHanhName)}}</td>
+                            <td> {{queGoc.dongSix == 1 ? 
+                                checkVongTruongSinh(queGoc.queTuoi.tuoiHao6.nguHanh.nguHanhName,queBien.queTuoi.tuoiHao6.name) : ''}}
+                            </td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td></td>
@@ -106,12 +108,15 @@
                                 (click)="checkLucThanRelationship(queGoc.lucThan.phuc5)" #LucThanElement>
                                 {{ queGoc.lucThan.phuc5 }}
                             </td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
+                            <td>{{checkVongTruongSinh(queGoc.queTuoi.tuoiHao5.nguHanh.nguHanhName,amLich.dayAmLichChi)}}</td>
+                            <td>{{checkVongTruongSinh(queGoc.queTuoi.tuoiHao5.nguHanh.nguHanhName,amLich.monthAmLichChi)}}</td>
                             <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao5)}}</td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
+                            <td>{{checkTuThoiVuongTuong(queGoc.queTuoi.tuoiHao5.nguHanh.nguHanhName)}}</td>
+                            <td>
+                                {{queGoc.dongFive == 1 ? 
+                                checkVongTruongSinh(queGoc.queTuoi.tuoiHao5.nguHanh.nguHanhName,queBien.queTuoi.tuoiHao5.name) : ''}}
+                            </td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td></td>
@@ -142,12 +147,15 @@
                                 (click)="checkLucThanRelationship(queGoc.lucThan.phuc4)" #LucThanElement>
                                 {{ queGoc.lucThan.phuc4 }}
                             </td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
+                            <td>{{checkVongTruongSinh(queGoc.queTuoi.tuoiHao4.nguHanh.nguHanhName,amLich.dayAmLichChi)}}</td>
+                            <td>{{checkVongTruongSinh(queGoc.queTuoi.tuoiHao4.nguHanh.nguHanhName,amLich.monthAmLichChi)}}</td>
                             <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao4)}}</td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
+                            <td>{{checkTuThoiVuongTuong(queGoc.queTuoi.tuoiHao4.nguHanh.nguHanhName)}}</td>
+                            <td>
+                                {{queGoc.dongFour == 1 ? 
+                                checkVongTruongSinh(queGoc.queTuoi.tuoiHao4.nguHanh.nguHanhName,queBien.queTuoi.tuoiHao4.name) : ''}}
+                            </td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td></td>
@@ -178,12 +186,15 @@
                                 (click)="checkLucThanRelationship(queGoc.lucThan.phuc3)" #LucThanElement>
                                 {{ queGoc.lucThan.phuc3 }}
                             </td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
+                            <td>{{checkVongTruongSinh(queGoc.queTuoi.tuoiHao3.nguHanh.nguHanhName,amLich.dayAmLichChi)}}</td>
+                            <td>{{checkVongTruongSinh(queGoc.queTuoi.tuoiHao3.nguHanh.nguHanhName,amLich.monthAmLichChi)}}</td>
                             <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao3)}}</td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
+                            <td>{{checkTuThoiVuongTuong(queGoc.queTuoi.tuoiHao3.nguHanh.nguHanhName)}}</td>
+                            <td>
+                                {{queGoc.dongThree == 1 ? 
+                                checkVongTruongSinh(queGoc.queTuoi.tuoiHao3.nguHanh.nguHanhName,queBien.queTuoi.tuoiHao3.name) : ''}}
+                            </td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td></td>
@@ -214,12 +225,15 @@
                                 (click)="checkLucThanRelationship(queGoc.lucThan.phuc2)" #LucThanElement>
                                 {{ queGoc.lucThan.phuc2 }}
                             </td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
+                            <td>{{checkVongTruongSinh(queGoc.queTuoi.tuoiHao2.nguHanh.nguHanhName,amLich.dayAmLichChi)}}</td>
+                            <td>{{checkVongTruongSinh(queGoc.queTuoi.tuoiHao2.nguHanh.nguHanhName,amLich.monthAmLichChi)}}</td>
                             <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao2)}}</td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
+                            <td>{{checkTuThoiVuongTuong(queGoc.queTuoi.tuoiHao2.nguHanh.nguHanhName)}}</td>
+                            <td>
+                                {{queGoc.dongTwo == 1 ? 
+                                checkVongTruongSinh(queGoc.queTuoi.tuoiHao2.nguHanh.nguHanhName,queBien.queTuoi.tuoiHao2.name) : ''}}
+                            </td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td></td>
@@ -250,12 +264,15 @@
                                 (click)="checkLucThanRelationship(queGoc.lucThan.phuc1)" #LucThanElement>
                                 {{ queGoc.lucThan.phuc1 }}
                             </td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
+                            <td>{{checkVongTruongSinh(queGoc.queTuoi.tuoiHao1.nguHanh.nguHanhName,amLich.dayAmLichChi)}}</td>
+                            <td>{{checkVongTruongSinh(queGoc.queTuoi.tuoiHao1.nguHanh.nguHanhName,amLich.monthAmLichChi)}}</td>
                             <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao1)}}</td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
+                            <td>{{checkTuThoiVuongTuong(queGoc.queTuoi.tuoiHao1.nguHanh.nguHanhName)}}</td>
+                            <td>
+                                {{queGoc.dongOne == 1 ? 
+                                checkVongTruongSinh(queGoc.queTuoi.tuoiHao1.nguHanh.nguHanhName,queBien.queTuoi.tuoiHao1.name) : ''}}
+                            </td>
+                            <td></td>
                         </tr>
                     </tbody>
                 </table>
