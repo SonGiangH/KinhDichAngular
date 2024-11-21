@@ -34,8 +34,6 @@
                             <th>Phục Thần</th>
                             <th>Nhật</th>
                             <th>Nguyệt</th>
-                            <th>Vượng Khắc</th>
-                            <th>TT Vượng Tướng</th>
                             <th>Hóa</th>
                             <th>Lục Hợp / Xung</th>
                         </tr>
@@ -64,20 +62,20 @@
                                 (mouseleave)="resetBGColor()" [ngClass]="queGoc.dongSix === 1 ? 'red-text' : 'black-text'"
                                 #tuoiNguHanhElement>
                                 {{ queGoc.queTuoi.tuoiHao6.name }} -
-                                {{ queGoc.queTuoi.tuoiHao6.nguHanh.nguHanhName }}
+                                {{ queGoc.queTuoi.tuoiHao6.nguHanh.nguHanhName }} {{isKhongVong(queGoc.queTuoi.tuoiHao6.name) ? "(K.Vong)" : ""}}
                             </td>
                             <td (mouseleave)="resetBGColorLucThan()" [attr.data-lucThan]="queGoc.lucThan.phuc6"
-                                (click)="checkLucThanRelationship(queGoc.lucThan.phuc6)" #LucThanElement>
-                                {{ queGoc.lucThan.phuc6 }}
+                                (click)="checkLucThanRelationshipPhucThan(queGoc.lucThan.phuc6, 6)" #LucThanElement class="d-flex">
+                                {{ queGoc.lucThan.phuc6 }} <p style="color: hotpink;font-weight: bold;">{{cloneQueGoc.phucThanHao6 || " "}}</p>
                             </td>
                             <td>{{checkVongTruongSinh(queGoc.queTuoi.tuoiHao6.nguHanh.nguHanhName,amLich.dayAmLichChi)}}</td>
                             <td>{{checkVongTruongSinh(queGoc.queTuoi.tuoiHao6.nguHanh.nguHanhName,amLich.monthAmLichChi)}}</td>
-                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao6)}}</td>
-                            <td>{{checkTuThoiVuongTuong(queGoc.queTuoi.tuoiHao6.nguHanh.nguHanhName)}}</td>
                             <td> {{queGoc.dongSix == 1 ? 
                                 checkVongTruongSinh(queGoc.queTuoi.tuoiHao6.nguHanh.nguHanhName,queBien.queTuoi.tuoiHao6.name) : ''}}
                             </td>
-                            <td></td>
+                            <td class="text-danger fw-bold">
+                                {{checkNguyetPhaAmDong(queGoc.queTuoi.tuoiHao6, queGoc.queTuoi.tuoiHao6.nguHanh.nguHanhName)}}
+                            </td>
                         </tr>
                         <tr>
                             <td></td>
@@ -102,21 +100,21 @@
                                         " (mouseleave)="resetBGColor()" [ngClass]="queGoc.dongFive === 1 ? 'red-text' : 'black-text'"
                                 #tuoiNguHanhElement>
                                 {{ queGoc.queTuoi.tuoiHao5.name }} -
-                                {{ queGoc.queTuoi.tuoiHao5.nguHanh.nguHanhName }}
+                                {{ queGoc.queTuoi.tuoiHao5.nguHanh.nguHanhName }} {{isKhongVong(queGoc.queTuoi.tuoiHao5.name) ? "(K.Vong)" : ""}}
                             </td>
                             <td (mouseleave)="resetBGColorLucThan()" [attr.data-lucThan]="queGoc.lucThan.phuc5"
-                                (click)="checkLucThanRelationship(queGoc.lucThan.phuc5)" #LucThanElement>
-                                {{ queGoc.lucThan.phuc5 }}
+                                (click)="checkLucThanRelationshipPhucThan(queGoc.lucThan.phuc5, 5)" #LucThanElement class="d-flex">
+                                {{ queGoc.lucThan.phuc5 }} <p style="color: hotpink;font-weight: bold;">{{cloneQueGoc.phucThanHao5 || " "}}</p>
                             </td>
                             <td>{{checkVongTruongSinh(queGoc.queTuoi.tuoiHao5.nguHanh.nguHanhName,amLich.dayAmLichChi)}}</td>
                             <td>{{checkVongTruongSinh(queGoc.queTuoi.tuoiHao5.nguHanh.nguHanhName,amLich.monthAmLichChi)}}</td>
-                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao5)}}</td>
-                            <td>{{checkTuThoiVuongTuong(queGoc.queTuoi.tuoiHao5.nguHanh.nguHanhName)}}</td>
                             <td>
                                 {{queGoc.dongFive == 1 ? 
                                 checkVongTruongSinh(queGoc.queTuoi.tuoiHao5.nguHanh.nguHanhName,queBien.queTuoi.tuoiHao5.name) : ''}}
                             </td>
-                            <td></td>
+                            <td class="text-danger fw-bold">
+                                {{checkNguyetPhaAmDong(queGoc.queTuoi.tuoiHao5, queGoc.queTuoi.tuoiHao5.nguHanh.nguHanhName)}}
+                            </td>
                         </tr>
                         <tr>
                             <td></td>
@@ -141,21 +139,21 @@
                                         " (mouseleave)="resetBGColor()" [ngClass]="queGoc.dongFour === 1 ? 'red-text' : 'black-text'"
                                 #tuoiNguHanhElement>
                                 {{ queGoc.queTuoi.tuoiHao4.name }} -
-                                {{ queGoc.queTuoi.tuoiHao4.nguHanh.nguHanhName }}
+                                {{ queGoc.queTuoi.tuoiHao4.nguHanh.nguHanhName }} {{isKhongVong(queGoc.queTuoi.tuoiHao4.name) ? "(K.Vong)" : ""}}
                             </td>
                             <td (mouseleave)="resetBGColorLucThan()" [attr.data-lucThan]="queGoc.lucThan.phuc4"
-                                (click)="checkLucThanRelationship(queGoc.lucThan.phuc4)" #LucThanElement>
-                                {{ queGoc.lucThan.phuc4 }}
+                                (click)="checkLucThanRelationshipPhucThan(queGoc.lucThan.phuc4, 4)" #LucThanElement class="d-flex">
+                                {{ queGoc.lucThan.phuc4 }} <p style="color: hotpink; font-weight: bold;">{{cloneQueGoc.phucThanHao4 || " "}}</p>
                             </td>
                             <td>{{checkVongTruongSinh(queGoc.queTuoi.tuoiHao4.nguHanh.nguHanhName,amLich.dayAmLichChi)}}</td>
                             <td>{{checkVongTruongSinh(queGoc.queTuoi.tuoiHao4.nguHanh.nguHanhName,amLich.monthAmLichChi)}}</td>
-                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao4)}}</td>
-                            <td>{{checkTuThoiVuongTuong(queGoc.queTuoi.tuoiHao4.nguHanh.nguHanhName)}}</td>
                             <td>
                                 {{queGoc.dongFour == 1 ? 
                                 checkVongTruongSinh(queGoc.queTuoi.tuoiHao4.nguHanh.nguHanhName,queBien.queTuoi.tuoiHao4.name) : ''}}
                             </td>
-                            <td></td>
+                            <td class="text-danger fw-bold">
+                                {{checkNguyetPhaAmDong(queGoc.queTuoi.tuoiHao4, queGoc.queTuoi.tuoiHao4.nguHanh.nguHanhName)}}
+                            </td>
                         </tr>
                         <tr>
                             <td></td>
@@ -180,21 +178,21 @@
                                         " (mouseleave)="resetBGColor()" [ngClass]="queGoc.dongThree === 1 ? 'red-text' : 'black-text'"
                                 #tuoiNguHanhElement>
                                 {{ queGoc.queTuoi.tuoiHao3.name }} -
-                                {{ queGoc.queTuoi.tuoiHao3.nguHanh.nguHanhName }}
+                                {{ queGoc.queTuoi.tuoiHao3.nguHanh.nguHanhName }} {{isKhongVong(queGoc.queTuoi.tuoiHao3.name) ? "(K.Vong)" : ""}}
                             </td>
                             <td (mouseleave)="resetBGColorLucThan()" [attr.data-lucThan]="queGoc.lucThan.phuc3"
-                                (click)="checkLucThanRelationship(queGoc.lucThan.phuc3)" #LucThanElement>
-                                {{ queGoc.lucThan.phuc3 }}
+                                (click)="checkLucThanRelationshipPhucThan(queGoc.lucThan.phuc3, 3)" #LucThanElement class="d-flex justify-content-between">
+                                {{ queGoc.lucThan.phuc3 }} <p style="color: hotpink; font-weight: bold;">{{cloneQueGoc.phucThanHao3 || " "}}</p>
                             </td>
                             <td>{{checkVongTruongSinh(queGoc.queTuoi.tuoiHao3.nguHanh.nguHanhName,amLich.dayAmLichChi)}}</td>
                             <td>{{checkVongTruongSinh(queGoc.queTuoi.tuoiHao3.nguHanh.nguHanhName,amLich.monthAmLichChi)}}</td>
-                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao3)}}</td>
-                            <td>{{checkTuThoiVuongTuong(queGoc.queTuoi.tuoiHao3.nguHanh.nguHanhName)}}</td>
                             <td>
                                 {{queGoc.dongThree == 1 ? 
                                 checkVongTruongSinh(queGoc.queTuoi.tuoiHao3.nguHanh.nguHanhName,queBien.queTuoi.tuoiHao3.name) : ''}}
                             </td>
-                            <td></td>
+                            <td class="text-danger fw-bold">
+                                {{checkNguyetPhaAmDong(queGoc.queTuoi.tuoiHao3, queGoc.queTuoi.tuoiHao3.nguHanh.nguHanhName)}}
+                            </td>
                         </tr>
                         <tr>
                             <td></td>
@@ -219,21 +217,21 @@
                                         " (mouseleave)="resetBGColor()" [ngClass]="queGoc.dongTwo === 1 ? 'red-text' : 'black-text'"
                                 #tuoiNguHanhElement>
                                 {{ queGoc.queTuoi.tuoiHao2.name }} -
-                                {{ queGoc.queTuoi.tuoiHao2.nguHanh.nguHanhName }}
+                                {{ queGoc.queTuoi.tuoiHao2.nguHanh.nguHanhName }} {{isKhongVong(queGoc.queTuoi.tuoiHao2.name) ? "(K.Vong)" : ""}}
                             </td>
                             <td (mouseleave)="resetBGColorLucThan()" [attr.data-lucThan]="queGoc.lucThan.phuc2"
-                                (click)="checkLucThanRelationship(queGoc.lucThan.phuc2)" #LucThanElement>
-                                {{ queGoc.lucThan.phuc2 }}
+                                (click)="checkLucThanRelationshipPhucThan(queGoc.lucThan.phuc2, 2)" #LucThanElement class="d-flex">
+                                {{ queGoc.lucThan.phuc2 }} <p style="color: hotpink;font-size: bold;">{{cloneQueGoc.phucThanHao2 || " "}}
                             </td>
                             <td>{{checkVongTruongSinh(queGoc.queTuoi.tuoiHao2.nguHanh.nguHanhName,amLich.dayAmLichChi)}}</td>
                             <td>{{checkVongTruongSinh(queGoc.queTuoi.tuoiHao2.nguHanh.nguHanhName,amLich.monthAmLichChi)}}</td>
-                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao2)}}</td>
-                            <td>{{checkTuThoiVuongTuong(queGoc.queTuoi.tuoiHao2.nguHanh.nguHanhName)}}</td>
                             <td>
                                 {{queGoc.dongTwo == 1 ? 
                                 checkVongTruongSinh(queGoc.queTuoi.tuoiHao2.nguHanh.nguHanhName,queBien.queTuoi.tuoiHao2.name) : ''}}
                             </td>
-                            <td></td>
+                            <td class="text-danger fw-bold">
+                                {{checkNguyetPhaAmDong(queGoc.queTuoi.tuoiHao2, queGoc.queTuoi.tuoiHao2.nguHanh.nguHanhName)}}
+                            </td>
                         </tr>
                         <tr>
                             <td></td>
@@ -258,92 +256,23 @@
                                         " (mouseleave)="resetBGColor()" [ngClass]="queGoc.dongOne === 1 ? 'red-text' : 'black-text'"
                                 #tuoiNguHanhElement>
                                 {{ queGoc.queTuoi.tuoiHao1.name }} -
-                                {{ queGoc.queTuoi.tuoiHao1.nguHanh.nguHanhName }}
+                                {{ queGoc.queTuoi.tuoiHao1.nguHanh.nguHanhName }} {{isKhongVong(queGoc.queTuoi.tuoiHao1.name) ? "(K.Vong)" : ""}}
                             </td>
                             <td (mouseleave)="resetBGColorLucThan()" [attr.data-lucThan]="queGoc.lucThan.phuc1"
-                                (click)="checkLucThanRelationship(queGoc.lucThan.phuc1)" #LucThanElement>
-                                {{ queGoc.lucThan.phuc1 }}
+                                (click)="checkLucThanRelationshipPhucThan(queGoc.lucThan.phuc1, 1)" #LucThanElement class="d-flex">
+                                {{ queGoc.lucThan.phuc1 }} <p style="color: hotpink;font-weight: bold;">{{cloneQueGoc.phucThanHao1 || " "}}
                             </td>
                             <td>{{checkVongTruongSinh(queGoc.queTuoi.tuoiHao1.nguHanh.nguHanhName,amLich.dayAmLichChi)}}</td>
                             <td>{{checkVongTruongSinh(queGoc.queTuoi.tuoiHao1.nguHanh.nguHanhName,amLich.monthAmLichChi)}}</td>
-                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao1)}}</td>
-                            <td>{{checkTuThoiVuongTuong(queGoc.queTuoi.tuoiHao1.nguHanh.nguHanhName)}}</td>
                             <td>
                                 {{queGoc.dongOne == 1 ? 
                                 checkVongTruongSinh(queGoc.queTuoi.tuoiHao1.nguHanh.nguHanhName,queBien.queTuoi.tuoiHao1.name) : ''}}
                             </td>
-                            <td></td>
+                            <td class="text-danger fw-bold">{{checkNguyetPhaAmDong(queGoc.queTuoi.tuoiHao1, queGoc.queTuoi.tuoiHao1.nguHanh.nguHanhName)}}</td>
                         </tr>
                     </tbody>
                 </table>
             </div> 
-            
-            <!-- Nhat Nguyet -->
-
-            <!-- <div class="que-goc" style="padding-top: 75px;">                
-                <table class="table-search text-center table-search-goc">
-                    <thead>
-                        <tr class="small">
-                            <th>Nhật</th>
-                            <th>Nguyệt</th>
-                            <th>Vượng Khắc</th>
-                            <th>Tứ Thời Vượng Tướng</th>
-                            <th>Hóa</th>
-                            <th>Lục Hợp / Xung</th>
-                        </tr>
-                    </thead>
-                    <tbody class="small">
-                        <tr>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
-                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao6)}}</td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
-                        </tr>
-                        <tr>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
-                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao5)}}</td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
-                        </tr>
-                        <tr>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
-                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao4)}}</td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
-                        </tr>
-                        <tr>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
-                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao3)}}</td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
-                        </tr>
-                        <tr>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
-                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao2)}}</td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
-                        </tr>
-                        <tr>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
-                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao1)}}</td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
-                            <td>Dummmy</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div> -->
 
             <!-- Que BIEN -->
             <div class="que-bien d-flex flex-column justify-content-start">
@@ -357,104 +286,196 @@
                 <table class="table-search text-center table-que-bien">
                     <thead>
                         <tr class="small">
-                            <th>Lục Thân (Quẻ Gốc)</th>
+                            <th>Lục Thân</th>
                             <th>Can-Chi</th>
+                            <th>Nhật</th>
+                            <th>Nguyệt</th>
+                            <th>Lục Hợp/Xung</th>
                         </tr>
                     </thead>
                     <tbody class="small">
                         <tr>
-                            <td>{{ queGoc.lucThan.hao6 }}</td>
+                            <td>{{queGoc.dongSix == 1 ? checkLucThanQueBien(queBien.queTuoi.tuoiHao6.nguHanh.nguHanhName) : '' }}</td>
                             <td name="tuoiNguHanh" [attr.data-nguHanh]="
-                  queBien.queTuoi.tuoiHao6.nguHanh.nguHanhName
-                " (click)="
-                  checkRelationship(
-                    queBien.queTuoi.tuoiHao6.nguHanh.nguHanhName
-                  )
-                " (mouseleave)="resetBGColor()" [ngClass]="queBien.dongSix === 1 ? 'red-text' : 'black-text'"
-                                #tuoiNguHanhElement>
-                                {{ queBien.queTuoi.tuoiHao6.name }} -
-                                {{ queBien.queTuoi.tuoiHao6.nguHanh.nguHanhName }}
+                                queBien.queTuoi.tuoiHao6.nguHanh.nguHanhName
+                                "(click)="
+                                checkRelationship(
+                                    queBien.queTuoi.tuoiHao6.nguHanh.nguHanhName
+                                )
+                                "(mouseleave)="resetBGColor()" [ngClass]="queBien.dongSix === 1 ? 'red-text' : 'black-text'"
+                                                #tuoiNguHanhElement>
+                                    {{ queBien.queTuoi.tuoiHao6.name }} -
+                                    {{ queBien.queTuoi.tuoiHao6.nguHanh.nguHanhName }} {{isKhongVong(queBien.queTuoi.tuoiHao6.name) ? "(K.Vong)" : ""}}
+                            </td>
+                            <td>{{queGoc.dongSix == 1 ? checkVongTruongSinh(queBien.queTuoi.tuoiHao6.nguHanh.nguHanhName,amLich.dayAmLichChi) : ""}}</td>
+                            <td>{{queGoc.dongSix == 1 ? checkVongTruongSinh(queBien.queTuoi.tuoiHao6.nguHanh.nguHanhName,amLich.monthAmLichChi):""}}</td>
+                            <td class="text-danger fw-bold">
+                                {{checkNguyetPhaAmDong(queBien.queTuoi.tuoiHao6, queBien.queTuoi.tuoiHao6.nguHanh.nguHanhName)}}
                             </td>
                         </tr>
                         <tr>
-                            <td>{{ queGoc.lucThan.hao5 }}</td>
+                            <td>{{queGoc.dongFive == 1 ? checkLucThanQueBien(queBien.queTuoi.tuoiHao5.nguHanh.nguHanhName) : '' }}</td>
                             <td name="tuoiNguHanh" [attr.data-nguHanh]="
-                  queBien.queTuoi.tuoiHao5.nguHanh.nguHanhName
-                " (click)="
-                  checkRelationship(
-                    queBien.queTuoi.tuoiHao5.nguHanh.nguHanhName
-                  )
-                " (mouseleave)="resetBGColor()" [ngClass]="queBien.dongFive === 1 ? 'red-text' : 'black-text'"
-                                #tuoiNguHanhElement>
-                                {{ queBien.queTuoi.tuoiHao5.name }} -
-                                {{ queBien.queTuoi.tuoiHao5.nguHanh.nguHanhName }}
+                                queBien.queTuoi.tuoiHao5.nguHanh.nguHanhName
+                                " (click)="
+                                checkRelationship(
+                                    queBien.queTuoi.tuoiHao5.nguHanh.nguHanhName)
+                                " (mouseleave)="resetBGColor()" [ngClass]="queBien.dongFive === 1 ? 'red-text' : 'black-text'"
+                                                #tuoiNguHanhElement>
+                                        {{ queBien.queTuoi.tuoiHao5.name }} -
+                                        {{ queBien.queTuoi.tuoiHao5.nguHanh.nguHanhName }} {{isKhongVong(queBien.queTuoi.tuoiHao5.name) ? "(K.Vong)" : ""}}
+                            </td>
+                            <td>{{queGoc.dongFive == 1 ? checkVongTruongSinh(queBien.queTuoi.tuoiHao5.nguHanh.nguHanhName,amLich.dayAmLichChi) : ""}}</td>
+                            <td>{{queGoc.dongFive == 1 ? checkVongTruongSinh(queBien.queTuoi.tuoiHao5.nguHanh.nguHanhName,amLich.monthAmLichChi):""}}</td>
+                            <td class="text-danger fw-bold">
+                                {{checkNguyetPhaAmDong(queBien.queTuoi.tuoiHao5, queBien.queTuoi.tuoiHao5.nguHanh.nguHanhName)}}
                             </td>
                         </tr>
                         <tr>
-                            <td>{{ queGoc.lucThan.hao4 }}</td>
+                            <td>{{queGoc.dongFour == 1 ? checkLucThanQueBien(queBien.queTuoi.tuoiHao4.nguHanh.nguHanhName) : '' }}</td>
                             <td name="tuoiNguHanh" [attr.data-nguHanh]="
-                  queBien.queTuoi.tuoiHao4.nguHanh.nguHanhName
-                " (click)="
-                  checkRelationship(
-                    queBien.queTuoi.tuoiHao4.nguHanh.nguHanhName
-                  )
-                " (mouseleave)="resetBGColor()" [ngClass]="queBien.dongFour === 1 ? 'red-text' : 'black-text'"
-                                #tuoiNguHanhElement>
-                                {{ queBien.queTuoi.tuoiHao4.name }} -
-                                {{ queBien.queTuoi.tuoiHao4.nguHanh.nguHanhName }}
+                                queBien.queTuoi.tuoiHao4.nguHanh.nguHanhName
+                                " (click)="
+                                checkRelationship(
+                                    queBien.queTuoi.tuoiHao4.nguHanh.nguHanhName
+                                )
+                                " (mouseleave)="resetBGColor()" [ngClass]="queBien.dongFour === 1 ? 'red-text' : 'black-text'"
+                                                #tuoiNguHanhElement>
+                                        {{ queBien.queTuoi.tuoiHao4.name }} -
+                                        {{ queBien.queTuoi.tuoiHao4.nguHanh.nguHanhName }} {{isKhongVong(queBien.queTuoi.tuoiHao4.name) ? "(K.Vong)" : ""}}
+                            </td>
+                            <td>{{queGoc.dongFour == 1 ? checkVongTruongSinh(queBien.queTuoi.tuoiHao4.nguHanh.nguHanhName,amLich.dayAmLichChi) : ""}}</td>
+                            <td>{{queGoc.dongFour == 1 ? checkVongTruongSinh(queBien.queTuoi.tuoiHao4.nguHanh.nguHanhName,amLich.monthAmLichChi):""}}</td>
+                            <td class="text-danger fw-bold">
+                                {{checkNguyetPhaAmDong(queBien.queTuoi.tuoiHao4, queBien.queTuoi.tuoiHao4.nguHanh.nguHanhName)}}
                             </td>
                         </tr>
                         <tr>
-                            <td>{{ queGoc.lucThan.hao3 }}</td>
+                            <td>{{queGoc.dongThree == 1 ? checkLucThanQueBien(queBien.queTuoi.tuoiHao3.nguHanh.nguHanhName) : '' }}</td>
                             <td name="tuoiNguHanh" [attr.data-nguHanh]="
-                  queBien.queTuoi.tuoiHao3.nguHanh.nguHanhName
-                " (click)="
-                  checkRelationship(
-                    queBien.queTuoi.tuoiHao3.nguHanh.nguHanhName
-                  )
-                " (mouseleave)="resetBGColor()" [ngClass]="queBien.dongThree === 1 ? 'red-text' : 'black-text'"
-                                #tuoiNguHanhElement>
-                                {{ queBien.queTuoi.tuoiHao3.name }} -
-                                {{ queBien.queTuoi.tuoiHao3.nguHanh.nguHanhName }}
+                                    queBien.queTuoi.tuoiHao3.nguHanh.nguHanhName
+                                    " (click)="
+                                    checkRelationship(
+                                        queBien.queTuoi.tuoiHao3.nguHanh.nguHanhName
+                                    )
+                                    " (mouseleave)="resetBGColor()" [ngClass]="queBien.dongThree === 1 ? 'red-text' : 'black-text'"
+                                                    #tuoiNguHanhElement>
+                                            {{ queBien.queTuoi.tuoiHao3.name }} -
+                                            {{ queBien.queTuoi.tuoiHao3.nguHanh.nguHanhName }} {{isKhongVong(queBien.queTuoi.tuoiHao3.name) ? "(K.Vong)" : ""}}
+                            </td>
+                            <td>{{queGoc.dongThree == 1 ? checkVongTruongSinh(queBien.queTuoi.tuoiHao3.nguHanh.nguHanhName,amLich.dayAmLichChi) : ""}}</td>
+                            <td>{{queGoc.dongThree == 1 ? checkVongTruongSinh(queBien.queTuoi.tuoiHao3.nguHanh.nguHanhName,amLich.monthAmLichChi):""}}</td>
+                            <td class="text-danger fw-bold">
+                                {{checkNguyetPhaAmDong(queBien.queTuoi.tuoiHao3, queBien.queTuoi.tuoiHao3.nguHanh.nguHanhName)}}
                             </td>
                         </tr>
                         <tr>
-                            <td>{{ queGoc.lucThan.hao2 }}</td>
+                            <td>{{queGoc.dongTwo == 1 ? checkLucThanQueBien(queBien.queTuoi.tuoiHao2.nguHanh.nguHanhName) : '' }}</td>
                             <td name="tuoiNguHanh" [attr.data-nguHanh]="
-                  queBien.queTuoi.tuoiHao2.nguHanh.nguHanhName
-                " (click)="
-                  checkRelationship(
-                    queBien.queTuoi.tuoiHao2.nguHanh.nguHanhName
-                  )
-                " (mouseleave)="resetBGColor()" [ngClass]="queBien.dongTwo === 1 ? 'red-text' : 'black-text'"
-                                #tuoiNguHanhElement>
-                                {{ queBien.queTuoi.tuoiHao2.name }} -
-                                {{ queBien.queTuoi.tuoiHao2.nguHanh.nguHanhName }}
+                                    queBien.queTuoi.tuoiHao2.nguHanh.nguHanhName
+                                    " (click)="
+                                    checkRelationship(
+                                        queBien.queTuoi.tuoiHao2.nguHanh.nguHanhName
+                                    )
+                                    " (mouseleave)="resetBGColor()" [ngClass]="queBien.dongTwo === 1 ? 'red-text' : 'black-text'"
+                                                    #tuoiNguHanhElement>
+                                            {{ queBien.queTuoi.tuoiHao2.name }} -
+                                            {{ queBien.queTuoi.tuoiHao2.nguHanh.nguHanhName }} {{isKhongVong(queBien.queTuoi.tuoiHao2.name) ? "(K.Vong)" : ""}}
                             </td>
-                            <td></td>
+                            <td>{{queGoc.dongTwo == 1 ? checkVongTruongSinh(queBien.queTuoi.tuoiHao2.nguHanh.nguHanhName,amLich.dayAmLichChi) : ""}}</td>
+                            <td>{{queGoc.dongTwo == 1 ? checkVongTruongSinh(queBien.queTuoi.tuoiHao2.nguHanh.nguHanhName,amLich.monthAmLichChi):""}}</td>
+                            <td class="text-danger fw-bold">
+                                {{checkNguyetPhaAmDong(queBien.queTuoi.tuoiHao2, queBien.queTuoi.tuoiHao2.nguHanh.nguHanhName)}}
+                            </td>
                         </tr>
                         <tr>
-                            <td>{{ queGoc.lucThan.hao1 }}</td>
+                            <td>{{queGoc.dongOne == 1 ? checkLucThanQueBien(queBien.queTuoi.tuoiHao1.nguHanh.nguHanhName) : '' }}</td>
                             <td name="tuoiNguHanh" [attr.data-nguHanh]="
-                  queBien.queTuoi.tuoiHao1.nguHanh.nguHanhName
-                " (click)="
-                  checkRelationship(
-                    queBien.queTuoi.tuoiHao1.nguHanh.nguHanhName
-                  )
-                " (mouseleave)="resetBGColor()" [ngClass]="queBien.dongOne === 1 ? 'red-text' : 'black-text'"
-                                #tuoiNguHanhElement>
-                                {{ queBien.queTuoi.tuoiHao1.name }} -
-                                {{ queBien.queTuoi.tuoiHao1.nguHanh.nguHanhName }}
+                                queBien.queTuoi.tuoiHao1.nguHanh.nguHanhName
+                                " (click)="
+                                checkRelationship(
+                                    queBien.queTuoi.tuoiHao1.nguHanh.nguHanhName
+                                )
+                                " (mouseleave)="resetBGColor()" [ngClass]="queBien.dongOne === 1 ? 'red-text' : 'black-text'"
+                                                #tuoiNguHanhElement>
+                                        {{ queBien.queTuoi.tuoiHao1.name }} -
+                                        {{ queBien.queTuoi.tuoiHao1.nguHanh.nguHanhName }} {{isKhongVong(queBien.queTuoi.tuoiHao1.name) ? "(K.Vong)" : ""}}
+                            </td>
+                            <td>{{queGoc.dongOne == 1 ? checkVongTruongSinh(queBien.queTuoi.tuoiHao1.nguHanh.nguHanhName,amLich.dayAmLichChi) : ""}}</td>
+                            <td>{{queGoc.dongOne == 1 ? checkVongTruongSinh(queBien.queTuoi.tuoiHao1.nguHanh.nguHanhName,amLich.monthAmLichChi):""}}</td>
+                            <td class="text-danger fw-bold">
+                                {{checkNguyetPhaAmDong(queBien.queTuoi.tuoiHao1, queBien.queTuoi.tuoiHao1.nguHanh.nguHanhName)}}
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-
         </div>
 
-        <!-- Check tuong que -->
-        <div class="d-flex">
+        <!-- Check tuong que --> 
+        <div class="que-goc-2">                
+                <table class="text-center">
+                    <thead>
+                        <tr class="small">
+                            <th>Can-Chi</th>
+                            <th>Tứ Thời Vượng Tướng</th>
+                            <th>Vượng Khắc</th>
+                        </tr>
+                    </thead>
+                    <tbody class="small">
+                        <tr>
+                            <td name="tuoiNguHanh" [attr.data-nguHanh]="queGoc.queTuoi.tuoiHao6.nguHanh.nguHanhName"
+                                #tuoiNguHanhElement [ngClass]="queGoc.dongSix === 1 ? 'red-text' : 'black-text'">
+                                {{ queGoc.queTuoi.tuoiHao6.name }} -
+                                {{ queGoc.queTuoi.tuoiHao6.nguHanh.nguHanhName }}</td>
+                            <td>{{checkTuThoiVuongTuong(queGoc.queTuoi.tuoiHao6.nguHanh.nguHanhName)}}</td>
+                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao6)}}</td>
+                        </tr> 
+                        <tr>
+                            <td name="tuoiNguHanh" [attr.data-nguHanh]="queGoc.queTuoi.tuoiHao5.nguHanh.nguHanhName"
+                                #tuoiNguHanhElement [ngClass]="queGoc.dongFive === 1 ? 'red-text' : 'black-text'">
+                                {{ queGoc.queTuoi.tuoiHao5.name }} -
+                                {{ queGoc.queTuoi.tuoiHao5.nguHanh.nguHanhName }}</td>
+                            <td>{{checkTuThoiVuongTuong(queGoc.queTuoi.tuoiHao5.nguHanh.nguHanhName)}}</td>
+                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao5)}}</td>
+                        </tr> 
+                        <tr>
+                            <td name="tuoiNguHanh" [attr.data-nguHanh]="queGoc.queTuoi.tuoiHao4.nguHanh.nguHanhName"
+                                #tuoiNguHanhElement [ngClass]="queGoc.dongFour === 1 ? 'red-text' : 'black-text'">
+                                {{ queGoc.queTuoi.tuoiHao4.name }} -
+                                {{ queGoc.queTuoi.tuoiHao4.nguHanh.nguHanhName }}</td>
+                            <td>{{checkTuThoiVuongTuong(queGoc.queTuoi.tuoiHao4.nguHanh.nguHanhName)}}</td>
+                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao4)}}</td>
+                        </tr> 
+                        <tr>
+                            <td name="tuoiNguHanh" [attr.data-nguHanh]="queGoc.queTuoi.tuoiHao3.nguHanh.nguHanhName"
+                                #tuoiNguHanhElement [ngClass]="queGoc.dongThree === 1 ? 'red-text' : 'black-text'">
+                                {{ queGoc.queTuoi.tuoiHao3.name }} -
+                                {{ queGoc.queTuoi.tuoiHao3.nguHanh.nguHanhName }}</td>
+                            <td>{{checkTuThoiVuongTuong(queGoc.queTuoi.tuoiHao3.nguHanh.nguHanhName)}}</td>
+                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao3)}}</td>
+                        </tr> 
+                        <tr>
+                            <td name="tuoiNguHanh" [attr.data-nguHanh]="queGoc.queTuoi.tuoiHao2.nguHanh.nguHanhName"
+                                #tuoiNguHanhElement [ngClass]="queGoc.dongTwo === 1 ? 'red-text' : 'black-text'">
+                                {{ queGoc.queTuoi.tuoiHao2.name }} -
+                                {{ queGoc.queTuoi.tuoiHao2.nguHanh.nguHanhName }}</td>
+                            <td>{{checkTuThoiVuongTuong(queGoc.queTuoi.tuoiHao2.nguHanh.nguHanhName)}}</td>
+                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao2)}}</td>
+                        </tr> 
+                        <tr>
+                            <td name="tuoiNguHanh" [attr.data-nguHanh]="queGoc.queTuoi.tuoiHao1.nguHanh.nguHanhName"
+                                #tuoiNguHanhElement [ngClass]="queGoc.dongOne === 1 ? 'red-text' : 'black-text'">
+                                {{ queGoc.queTuoi.tuoiHao1.name }} -
+                                {{ queGoc.queTuoi.tuoiHao1.nguHanh.nguHanhName }}</td>
+                            <td>{{checkTuThoiVuongTuong(queGoc.queTuoi.tuoiHao1.nguHanh.nguHanhName)}}</td>
+                            <td>{{checkVuongKhac(queGoc.queTuoi.tuoiHao1)}}</td>
+                        </tr>                        
+                    </tbody>
+                </table>
+        </div>
+
+        <div class="d-flex pt-4">
             <!-- Check Tuong Que -->
             <div class="d-flex flex-column justify-content-start phan-ngam">
                 <div style="font-weight: bold;" class="d-flex">Phản Ngâm Tượng Quẻ:
@@ -474,7 +495,7 @@
 
             <!-- Check Phan Ngam Hao -->
             <div class="phan-ngam-hao d-flex flex-column justify-content-start text-start" style="padding-left: 20px;">
-                <div style="font-weight: bold;" class="d-flex">Phản Ngâm Hào Động-Hào Tĩnh:
+                <div style="font-weight: bold; padding-bottom: 10px;" class="d-flex">Phản Ngâm Hào Động-Hào Tĩnh:
                     <div style="color: red; font-weight: bolder; margin-left: 10px;">
                         {{(checkPhanNgamHao(queGoc.queTuoi.tuoiHao1.name, queBien.queTuoi.tuoiHao1.name) ||
                         checkPhanNgamHao(queGoc.queTuoi.tuoiHao2.name, queBien.queTuoi.tuoiHao2.name) ||
@@ -528,6 +549,5 @@
                 </table>
             </div>
         </div>
-
     </div>
 </div>

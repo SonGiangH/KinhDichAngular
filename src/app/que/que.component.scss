@@ -2,6 +2,7 @@
     background: linear-gradient(to right, #e1cd99a3, #e9d7a4c2);
     width: 1400px;
     padding-bottom: 20px;
+    position: absolute;
 }
 
 table td {
@@ -40,11 +41,12 @@ table.table-search td:nth-of-type(2) {width: 120px;}
 }
 
 .table-que-bien {
-    width: 280px;
+    width: 430px;
 }
 
 .table-que-bien td {
     padding: 8 15px;
+    text-align: center;
 }
 
 .table-search-goc th {
@@ -93,13 +95,26 @@ table.table-search td:nth-of-type(2) {width: 120px;}
 }
 
 .nhat-nguyet {
-    // background-color: aliceblue;
+    position: relative;
+    left: 35%;
     width: 500px;
     text-align: center;
     align-items: center;
-    position: relative;
-    left: 20%;
     border-style: solid;
     margin-bottom: 10px;
     padding-top: 10px;
 }
+
+.que-goc-2 {
+    width: 700px;
+    padding-left: 340px;
+}
+
+table.que-goc-2 td:nth-of-type(2) {width: 60px;}/*Setting the width of column 2.*/
+table.table-search-goc td:nth-of-type(6) {width: 180px;}/*Setting the width of column 6 - Phuc Than.*/
+
+.table-search-goc p {
+    margin: 0 !important;
+}
+
+table.table-que-bien td:nth-of-type(2) {width: 128px;}  

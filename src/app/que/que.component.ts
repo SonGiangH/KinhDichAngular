@@ -35,7 +35,7 @@ export class QueComponent implements OnInit {
 
     if (this.responseData) {
       this.queGoc = this.responseData.QueGoc || {}
-      this.queBien = this.responseData.QueBien || {}
+      this.queBien = this.responseData.QueBien || this.responseData.QueGoc
       this.duongLich = this.responseData.DuongLich || {}
       this.amLich = this.responseData.AmLich || {}
       this.timeLapQue = this.responseData.GioLapQue || {}
@@ -176,8 +176,24 @@ export class QueComponent implements OnInit {
       ["SỬU","TÍ"]
   ]
 
+  tuoiKhacPairs = [
+      ["NGỌ" , "TÍ"],
+      ["SỬU", "MÙI"],
+      ["DẦN" , "THÂN"],
+      ["MÃO", "DẬU"],
+      ["THÌN","TUẤT"],
+      ["TỴ","HỢI"]
+  ]
+
   checkHopTuoi(tuoi1: string, tuoi2: string) : boolean {
     return this.tuoiHopPairs.some(pair => 
+      (pair[0].toUpperCase() === tuoi1.toUpperCase() && pair[1].toUpperCase() === tuoi2.toUpperCase()) ||
+      (pair[0].toUpperCase() === tuoi2 && pair[1].toUpperCase() === tuoi1.toUpperCase())
+    )
+  }
+
+  checkKhacTuoi(tuoi1: string, tuoi2: string) : boolean {
+    return this.tuoiKhacPairs.some(pair => 
       (pair[0].toUpperCase() === tuoi1.toUpperCase() && pair[1].toUpperCase() === tuoi2.toUpperCase()) ||
       (pair[0].toUpperCase() === tuoi2 && pair[1].toUpperCase() === tuoi1.toUpperCase())
     )
@@ -215,7 +231,91 @@ export class QueComponent implements OnInit {
         element.nativeElement.style.backgroundColor = ''
       }
     })
+    
   }
+
+  checkLucThanRelationshipPhucThan(phucthanHao: any, selectedHao: number) : void {
+      const lucThanPhucThan = phucthanHao.split("-")[0].trim();
+
+      const sinhRelations : {[key: string] : string} = {
+        "Phụ Mẫu"   : "Huynh Đệ",
+        "Huynh Đệ"  : "Tử Tôn",
+        "Tử Tôn"    : "Thê Tài",
+        "Thê Tài"   : "Quan Quỷ",
+        "Quan Quỷ"  : "Phụ Mẫu"
+      }
+
+      const khacRelations : {[key: string] : string} = {
+        "Phụ Mẫu" : "Tử Tôn",
+        "Tử Tôn"  : "Quan Quỷ",
+        "Quan Quỷ": "Huynh Đệ",
+        "Huynh Đệ": "Thê Tài",
+        "Thê Tài" : "Phụ Mẫu"
+      }
+
+      // Set css 
+      this.lucThanElements.forEach((element: any) => {
+        const lucThan = element.nativeElement.getAttribute('data-lucThan');
+
+        if (sinhRelations[lucThanPhucThan] === lucThan) {
+          element.nativeElement.style.backgroundColor = 'green';
+          element.nativeElement.style.color = 'white';
+        } else if (khacRelations[lucThanPhucThan] === lucThan) {
+          element.nativeElement.style.backgroundColor = 'red';
+          element.nativeElement.style.color = 'white';
+        } else {
+          element.nativeElement.style.backgroundColor = ''
+        }
+      })
+
+      // Gan Phuc Than vao o Phuc Than , gan gia tri nguyen than, cuu than, ky than cho cac hao con lai
+      // reset Than cua cac Hao
+      this.cloneQueGoc.thanHao1 = ''
+      this.cloneQueGoc.thanHao2 = ''
+      this.cloneQueGoc.thanHao3 = ''
+      this.cloneQueGoc.thanHao4 = ''
+      this.cloneQueGoc.thanHao5 = ''
+      this.cloneQueGoc.thanHao6 = ''
+      this.cloneQueGoc.phucThanHao1 = ''
+      this.cloneQueGoc.phucThanHao2 = ''
+      this.cloneQueGoc.phucThanHao3 = ''
+      this.cloneQueGoc.phucThanHao4 = ''
+      this.cloneQueGoc.phucThanHao5 = ''
+      this.cloneQueGoc.phucThanHao6 = ''
+      
+    // Đặt hào được chọn là "Dụng Thần"
+    this.cloneQueGoc['phucThanHao' + selectedHao] = "Dụng Thần";
+
+    // Lục Thân của phục thân hào được chọn, ví dụ: phục thân = "Thê Tài - Ngọ Hỏa" -> chỉ lấy "Thê Tài"
+    this.cloneQueGoc.lucThan.phuc = Array.from({ length: 6 }, (_, i) => this.queGoc.lucThan[`phuc${i + 1}`] || "");
+    
+    const selectedLucThan = this.cloneQueGoc.lucThan.phuc[selectedHao-1].split("-")[0].trim();
+
+    // Xác định các mối quan hệ sinh/khắc của Lục Thân của hào được chọn
+    const sinhLucThan = this.lucThanDuocSinhRelations[selectedLucThan]; // Lục Thân Sinh
+    const khacLucThan = this.lucThanKhacRelations[selectedLucThan];     // Lục Thân Khắc
+    const biKhacLucThan = this.lucThanBiKhacRelations[selectedLucThan]; // Lục Thân Bị Khắc
+    
+  
+    for (let i = 1; i <= 6; i++) {
+        if (i === selectedHao) continue; // Bỏ qua hào đã được chọn
+
+        const currentLucThan = this.queGoc.lucThan['hao' + i]; // Lục Thân của hào hiện tại
+
+        if (sinhLucThan === currentLucThan) {
+            // Xác định Nguyên Thần (Dụng Thần ĐƯỢC SINH bởi)
+            this.cloneQueGoc['thanHao' + i] = this.thanDuocSinhRelations['Dụng Thần'];
+
+        } else if (khacLucThan === currentLucThan) {
+            // Xác định Cừu Thần (bị Dụng Thần khắc)
+            this.cloneQueGoc['thanHao' + i] = this.thanKhacRelations['Dụng Thần'];
+
+        } else if (biKhacLucThan === currentLucThan) {
+            // Xác định Kỵ Thần (khắc Dụng Thần)
+            this.cloneQueGoc['thanHao' + i] = this.thanBiKhacRelations['Dụng Thần'];
+        }
+    }
+}
 
   // Check Phản Ngâm Tượng Quẻ theo Cung
   phanNgamPairs = [
@@ -495,5 +595,76 @@ export class QueComponent implements OnInit {
     const position = (currentIndex - startIndex + 12) % 12;
 
     return vongTruongSinh[position];
-}
+  }
+
+  // Check Nguyet Pha - Am Dong - Nhat Xung
+  checkNguyetPhaAmDong(tuoiHao: any, nguHanh: string) : string {
+    const chiNhat = this.amLich.dayAmLichChi.toUpperCase();
+    const chiNguyet = this.amLich.monthAmLichChi.toUpperCase();
+
+    let nhatEffect = '';
+    let nguyetEffect = '';
+
+    // Kiểm tra Nhật ảnh hưởng
+    if (this.checkKhacTuoi(chiNhat, tuoiHao.name)) nhatEffect = "Ám động";
+
+    if (this.checkHopTuoi(tuoiHao.name.toUpperCase(),chiNhat)) nhatEffect = "Nhật Hợp"
+    
+    // Kiểm tra Nguyệt Phá
+    if (this.checkKhacTuoi(chiNguyet,tuoiHao.name.toUpperCase())) nguyetEffect = "Nguyệt Phá"
+
+    if (this.checkHopTuoi(tuoiHao.name.toUpperCase(),chiNguyet)) nguyetEffect = "Nguyệt Hợp"
+    
+      return `${nhatEffect}  ${nguyetEffect}`;
+  } 
+
+  // Export Lục Thân quẻ biến
+  checkLucThanQueBien(nguHanhHaoBien: string): string {
+    const nguHanhQueGoc = this.queGoc.nguHanh.nguHanhName;
+    
+    // Kiem tra Luc Than
+    if (nguHanhHaoBien.toUpperCase() === this.dcSinhRelations[nguHanhQueGoc].toUpperCase()) return "Phụ Mẫu"
+        else if (nguHanhHaoBien.toUpperCase() === this.biKhacRelations[nguHanhQueGoc].toUpperCase()) return "Quan Qủy"
+        else if (nguHanhHaoBien.toUpperCase() === this.khacRelations[nguHanhQueGoc].toUpperCase()) return "Thê Tài"
+        else if (nguHanhHaoBien.toUpperCase() === this.sinhRelations[nguHanhQueGoc].toUpperCase()) return "Tử Tôn"
+        else if (nguHanhHaoBien.toUpperCase() === nguHanhQueGoc.toUpperCase()) return "Huynh Đệ"
+        else 
+          return '';
+  }
+
+  // Check Khong Vong
+  isKhongVong(name: string) : boolean {
+    const khongVongArray = this.checkKhongVong(name);
+    
+    return khongVongArray.includes(name.toUpperCase());
+  }
+  checkKhongVong(chiName : string) : [resultChi1: string, resultChi2: string] {
+  const can = ["Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ", "Canh", "Tân", "Nhâm", "Quý"];
+  const chi = ["Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi"];
+
+  const nhatCan = this.amLich.dayAmLichCan; // Ví dụ: "Kỷ"
+  const nhatChi = this.amLich.dayAmLichChi; // Ví dụ: "Thìn"
+
+  // Tìm vị trí của Can và Chi trong mảng
+  const startCanIndex = can.indexOf(nhatCan);
+  const startChiIndex = chi.indexOf(nhatChi);
+
+  if (startCanIndex === -1 || startChiIndex === -1) {
+    return ["", ""]; // Trả về rỗng nếu không tìm thấy Can hoặc Chi
+  }
+
+  // Tính khoảng cách từ Can hiện tại tới "Quý"
+  const diff = can.length - 1 - startCanIndex;
+
+  // Tính vị trí Chi sau khi cộng thêm khoảng cách
+  const newChiIndex = (startChiIndex + diff) % chi.length;
+
+  // Lấy 2 Chi tiếp theo (sau vị trí tính toán)
+  const resultChi1 = chi[(newChiIndex + 1) % chi.length];
+  const resultChi2 = chi[(newChiIndex + 2) % chi.length];
+
+
+  return [resultChi1.toUpperCase(), resultChi2.toUpperCase()]
+
+  }
 }
