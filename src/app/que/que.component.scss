@@ -1,51 +1,46 @@
-.search {
+.que__container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.information__block {
     background: linear-gradient(to right, #e1cd99a3, #e9d7a4c2);
-    width: 1400px;
+    width: 2020px;   
     padding-bottom: 20px;
-    position: absolute;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    justify-content: center;
+    align-items: center;
 }
-
-table td {
-    padding: 8px;
-    line-height: 1.42857143;
-    vertical-align: top;
-    border-top: 1px solid #fff;
-}
-
-.tuoiNguHanh :hover {
-    cursor: pointer;
+// Tables
+.comparison_table {
+    display: flex;
+    justify-content: center;    
 }
 
 .table-search {
     width: 100%;
-    max-width: 100%;
+    max-width: none;
+    table-layout: auto;
     border-spacing: 0;
-    border-collapse: collapse;
+    // border-collapse: collapse;
+    border: 1px solid #333; /* Viền ngoài bảng */
+    border-collapse: separate; /* Không gộp ô */
+    border-spacing: 0; /* Không tạo khoảng cách giữa các ô */
 }
 
 .table-search-goc {
+    width: 100%;
+    max-width: none;
+    table-layout: auto;
+    border-spacing: 0;
+    border-collapse: collapse;
     margin-right: 10px;
-}
-
-table.fixed {table-layout:fixed; width:1000px;}/*Setting the table width is important!*/
-table.fixed td {overflow:hidden;}/*Hide text outside the cell.*/
-table.fixed td:nth-of-type(1) {width:20px;}/*Setting the width of column 1.*/
-table.fixed td:nth-of-type(2) {width:20px;}/*Setting the width of column 2.*/
-table.fixed td:nth-of-type(3) {width:40px;}/*Setting the width of column 3.*/
-
-table.table-search td:nth-of-type(2) {width: 120px;}
-
-.red-text {
-    color: red;
-    font-weight: bold;
-}
-
-.table-que-bien {
-    width: 430px;
-}
-
-.table-que-bien td {
-    padding: 8 15px;
     text-align: center;
 }
 
@@ -53,7 +48,65 @@ table.table-search td:nth-of-type(2) {width: 120px;}
     padding: 0 10px;
 }
 
+table td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #f5e2e2;
+}
 
+.table-que-bien {
+    text-align: center;
+    width: 100%;
+    max-width: none;
+    table-layout: auto;
+    border-spacing: 0;
+    // border-collapse: collapse;
+    text-align: center;
+    border: 1px solid #333; /* Viền ngoài bảng */
+    border-collapse: separate; /* Không gộp ô */
+    border-spacing: 0; /* Không tạo khoảng cách giữa các ô */
+
+}
+
+.tuoiNguHanh :hover {
+    cursor: pointer;
+}
+
+.gradient-line {
+    height: 3px;
+    background: linear-gradient(to right, #ff7e5f, #feb47b); /* Hiệu ứng gradient */
+    border: none;
+    width: 100%;
+    margin: 16px 0; /* Khoảng cách giữa các div */
+  }
+
+
+.red-text {
+    color: red;
+    font-weight: bold;
+}
+
+// Que Bien
+.que_bien {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    padding-left: 20px;
+}
+
+.td-fit-content {
+    white-space: nowrap; /* Prevent line wrapping */
+    display: flex; /* Enable flex layout for alignment */
+    align-items: center; /* Vertically align content */
+    justify-content: flex-start; /* Align content to the left */
+}
+
+.table-que-bien td {
+    padding: 8 15px;
+    text-align: center;
+}
 
 .phan-ngam {
     text-align: left;
@@ -94,27 +147,73 @@ table.table-search td:nth-of-type(2) {width: 120px;}
     padding-right: 10px;
 }
 
-.nhat-nguyet {
-    position: relative;
-    left: 35%;
-    width: 500px;
+.thang__nam {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     text-align: center;
     align-items: center;
     border-style: solid;
     margin-bottom: 10px;
-    padding-top: 10px;
+    padding: 10px 10px;
+    width: fit-content;
 }
 
-.que-goc-2 {
-    width: 700px;
-    padding-left: 340px;
+// Check Tuong Que
+.ttvt_goc {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
-table.que-goc-2 td:nth-of-type(2) {width: 60px;}/*Setting the width of column 2.*/
-table.table-search-goc td:nth-of-type(6) {width: 180px;}/*Setting the width of column 6 - Phuc Than.*/
+// Table Que Goc
+table.table-search-goc td:nth-of-type(1) {width: 90px;}
+table.table-search-goc td:nth-of-type(2) {width: 120px;}
+table.table-search-goc td:nth-of-type(3) {width: 80px;}
+table.table-search-goc td:nth-of-type(4) {width: 80px;}  
+table.table-search-goc td:nth-of-type(5) {width: 150px;} 
+table.table-search-goc td:nth-of-type(6) {width: 190px;}    /*Setting the width of column 6 - Phuc Than.*/
+table.table-search-goc td:nth-of-type(7) {width: 100px;}
+table.table-search-goc td:nth-of-type(8) {width: 100px;}  
+table.table-search-goc td:nth-of-type(9) {width: 80px;} 
+table.table-search-goc td:nth-of-type(10) {width: 120px;} 
+
+// Table Que Bien
+table.table-que-bien td:nth-of-type(1) {width: 160px;}       /*Setting the width of column 1 - Luc Than.*/
+table.table-que-bien td:nth-of-type(2) {width: 380px;}       
+table.table-que-bien td:nth-of-type(3) {width: 160px;}
+table.table-que-bien td:nth-of-type(4) {width: 180px;}
+table.table-que-bien td:nth-of-type(5) {width: 180px;}
 
 .table-search-goc p {
     margin: 0 !important;
 }
 
-table.table-que-bien td:nth-of-type(2) {width: 128px;}  
+
+// Image tuong sinh tuong khac
+.responsive-img {
+    width: auto;           /* Đảm bảo tỷ lệ gốc của hình ảnh */
+    max-width: 100%;       /* Không vượt quá chiều rộng của container */
+    height: auto;          /* Tự động điều chỉnh chiều cao dựa trên tỷ lệ */
+    max-height: 200px;     /* Chiều cao tối đa để đồng đều */
+    object-fit: contain;   /* Đảm bảo hình ảnh không bị cắt */
+    margin: 0 auto;        /* Căn giữa nếu cần */
+}
+
+/* Media Query for iPhone 16 Pro Max */
+@media only screen and (max-width: 430px) {
+    .information__block {
+        width: 100%;
+        background: red;  
+        padding-bottom: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        display: flex;
+        flex-direction: column;
+        padding-top: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+
+}
+  
