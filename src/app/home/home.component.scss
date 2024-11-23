@@ -3,6 +3,54 @@
     margin: 0 auto;
 }
 
+.container-viewport {
+    position: relative;
+    overflow: hidden;
+
+    &::before,
+    &::after {
+        position: absolute;
+        content: "";
+        pointer-events: none;
+    }
+
+    &::before {
+        top: 0;
+        left: 0;
+        background: url(../../assets/pics/decoration_01.png) 50% 50% / cover no-repeat;
+    }
+
+    &::after {
+        right: 0;
+        bottom: 0;
+        background: url(../../assets/pics/decoration_02.png) 50% 50% / cover no-repeat;
+    }
+
+    @media print, (min-width: 768px) {
+        &::before {
+            width: 1163px;
+            height: 581.5px;
+        }
+
+        &::after {
+            width: 1137.63px;
+            height: 758.801px;
+        }
+    }
+
+    @media only screen and (max-width: 767.98px) {
+        &::before {
+            width: 420px;
+            height: 200px;
+        }
+
+        &::after {
+            width: 400px;
+            height: 266.802px;
+        }
+    }
+}
+
 option {
     font-weight: normal;
     display: block;
@@ -31,7 +79,7 @@ select {
 .form-search {
     margin: auto;
     max-width: 1000px;
-    background: linear-gradient(to right, #e1cd99a3, #e9d7a4c2);
+    background: linear-gradient(to right, rgba(225, 205, 153, 0.8), rgba(233, 215, 164, 0.9));
     padding: 10px;
     border-radius: 10px;
 }
@@ -100,4 +148,13 @@ button[name="submitsearch"] {
     background: url(../../assets/button-tim-kiem.webp) no-repeat center center;
     background-size: cover;
     border: none;
+    transition: opacity .35s ease;
+
+    &:hover {
+        opacity: .8;
+    }
+}
+
+select, input[type="checkbox"] {
+    cursor: pointer;
 }

@@ -1,3 +1,51 @@
+.container-viewport {
+    position: relative;
+    overflow: hidden;
+
+    &::before,
+    &::after {
+        position: absolute;
+        content: "";
+        pointer-events: none;
+    }
+
+    &::before {
+        top: 0;
+        left: 0;
+        background: url(../../assets/pics/decoration_01.png) 50% 50% / cover no-repeat;
+    }
+
+    &::after {
+        right: 0;
+        bottom: 0;
+        background: url(../../assets/pics/decoration_02.png) 50% 50% / cover no-repeat;
+    }
+
+    @media print, (min-width: 768px) {
+        &::before {
+            width: 1163px;
+            height: 581.5px;
+        }
+
+        &::after {
+            width: 1137.63px;
+            height: 758.801px;
+        }
+    }
+
+    @media only screen and (max-width: 767.98px) {
+        &::before {
+            width: 420px;
+            height: 200px;
+        }
+
+        &::after {
+            width: 400px;
+            height: 266.802px;
+        }
+    }
+}
+
 .que__container {
     display: flex;
     justify-content: center;
@@ -22,7 +70,7 @@
 }
 
 .information__block {
-    background: linear-gradient(to right, #e1cd99a3, #e9d7a4c2);
+    background: linear-gradient(to right, rgba(225, 205, 153, 0.8), rgba(233, 215, 164, 0.9));
     max-width: 2020px;
     width: calc(100% - 40px);
     margin: 20px auto;
@@ -102,14 +150,33 @@
         max-width: 768px;
     }
 
-    .table-search-goc {
-        width: 1000px;
+    .table-search-goc,
+    .table-search,
+    .table-que-bien,
+    .table-ttvt {
+        flex: 0 0 auto;
+        width: 1000px !important;
+    }
+
+    .ttvt_goc {
+        justify-content: unset !important;
+        flex-direction: column;
+    }
+
+    .table-ttvt + .table-ttvt {
+        margin-top: 30px;
+    }
+
+    .que_bien  {
+        margin-top: 30px;
     }
 }
 
 @media only screen and (max-width: 430px) {
     .table-search,
-    .table-que-bien  {
+    .table-que-bien,
+    .table-ttvt  {
+        flex: 0 0 auto;
         width: 700px !important;
     }
 
@@ -247,6 +314,13 @@ table td {
     justify-content: center;
 }
 
+@media only screen and (max-width: 430px) {
+    .ttvt_goc {
+        justify-content: unset;
+        flex-direction: column;
+    }
+}
+
 // Table Que Goc
 table.table-search-goc td:nth-of-type(1) {width: 90px;}
 table.table-search-goc td:nth-of-type(2) {width: 120px;}
@@ -272,8 +346,26 @@ table.table-que-bien td:nth-of-type(5) {width: 180px;}
 
 
 // Image tuong sinh tuong khac
+.image-list {
+    position: relative;
+    z-index: 1;
+}
+
 .image-list img {
     width: auto;
+}
+
+@media print ,(max-width: 1199.98px) {
+    .image-list {
+        flex-direction: column;
+        padding-top: 14px;
+
+        img {
+            & + img {
+                margin-top: 30px;
+            }
+        }
+    }
 }
 .responsive-img {
     max-width: 100%;       /* Không vượt quá chiều rộng của container */
@@ -319,6 +411,8 @@ table.table-que-bien td:nth-of-type(5) {width: 180px;}
     width: calc(100% - 40px);
     margin: 0 auto;
     background-color: #fff;
+    position: relative;
+    z-index: 1;
 }
 
 @media print ,(max-width: 1199.98px) {

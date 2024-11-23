@@ -1,17 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
-@font-face { font-family: "Itim";
-    src: url("assets/fonts/Itim-Regular.ttf");}
+@font-face {
+    font-family: "Itim";
+    src: url("assets/fonts/Itim-Regular.ttf");
+}
 
 @font-face {
     font-family: "ong-do";
     src: url("assets/fonts/font-ong-do.ttf");
 }
-body{
-    background: linear-gradient(to right, #e1cd99a3, #e9d7a4c2);
-    }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+    background: linear-gradient(to right, #e1cd99a3, #e9d7a4c2);
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: "Open Sans", sans-serif !important;
+}
 
 .font-ong-do {
     font-family: "ong-do" !important;
