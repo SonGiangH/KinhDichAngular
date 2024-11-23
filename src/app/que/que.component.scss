@@ -1,0 +1,328 @@
+.que__container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+@media only screen and (max-width: 767.98px) {
+    .que__container {
+      min-width: 320px;
+    }
+}
+
+.wrapper {
+    width: calc(100% - 40px);
+    margin: 0 auto;
+}
+
+@media print, (min-width: 768px) {
+    .wrapper {
+        max-width: 1516px;
+    }
+}
+
+.information__block {
+    background: linear-gradient(to right, #e1cd99a3, #e9d7a4c2);
+    max-width: 2020px;
+    width: calc(100% - 40px);
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+// Tables
+.comparison_table {
+    display: flex;
+    justify-content: center;
+    max-width: 978px;
+    margin: 0 auto;
+}
+
+.table-search {
+    padding: 5px;
+    width: 100%;
+    max-width: none;
+    table-layout: auto;
+    border-spacing: 0;
+    // border-collapse: collapse;
+    border: 1px solid #333; /* Viền ngoài bảng */
+    border-collapse: separate; /* Không gộp ô */
+    border-spacing: 0; /* Không tạo khoảng cách giữa các ô */
+}
+
+.table-searchs-viewport {
+    overflow-y: hidden;
+    overflow-x: auto;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table-search-goc {
+    margin: 0 auto;
+    max-width: 1516px;
+    table-layout: auto;
+    border-spacing: 0;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.table-searchs-viewport::-webkit-scrollbar {
+    width: 10px;
+}
+
+.table-searchs-viewport::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+
+.table-searchs-viewport::-webkit-scrollbar-track {
+    background-color: transparentize(#ccc, 0.7);
+}
+
+.table-searchs-viewport::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: transparentize(#ccc, 0.5);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+@media print, (min-width: 768px) and (max-width: 1279.98px) {
+    .table-searchs-viewport {
+        max-width: 980px;
+    }
+
+    .table-search-goc {
+        width: 1200px;
+    }
+}
+
+@media print, (max-width: 767.98px) {
+    .table-searchs-viewport {
+        max-width: 768px;
+    }
+
+    .table-search-goc {
+        width: 1000px;
+    }
+}
+
+@media only screen and (max-width: 430px) {
+    .table-search,
+    .table-que-bien  {
+        width: 700px !important;
+    }
+
+    .que_bien {
+        margin-top: 20px;
+    }
+}
+
+.table-search-goc th {
+    padding: 0 10px;
+}
+
+table td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #f5e2e2;
+}
+
+.table-que-bien {
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+    max-width: none;
+    table-layout: auto;
+    border-spacing: 0;
+    // border-collapse: collapse;
+    text-align: center;
+    border: 1px solid #333; /* Viền ngoài bảng */
+    border-collapse: separate; /* Không gộp ô */
+    border-spacing: 0; /* Không tạo khoảng cách giữa các ô */
+
+}
+
+.tuoiNguHanh :hover {
+    cursor: pointer;
+}
+
+.gradient-line {
+    height: 3px;
+    background: linear-gradient(to right, #ff7e5f, #feb47b); /* Hiệu ứng gradient */
+    border: none;
+    width: 100%;
+    margin: 16px 0; /* Khoảng cách giữa các div */
+  }
+
+
+.red-text {
+    color: red;
+    font-weight: bold;
+}
+
+// Que Bien
+.que_bien {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-left: 20px;
+    flex: 1;
+}
+
+@media print, (max-width: 1199.98px) {
+    .que_bien {
+        padding-left: 0;
+    }
+}
+
+
+
+.td-fit-content {
+    white-space: nowrap; /* Prevent line wrapping */
+    display: flex; /* Enable flex layout for alignment */
+    align-items: center; /* Vertically align content */
+    justify-content: flex-start; /* Align content to the left */
+}
+
+.table-que-bien td {
+    padding: 8 15px;
+    text-align: center;
+}
+
+.phan-ngam {
+    text-align: left;
+    padding-left: 10px;
+}
+
+.phan-ngam p {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.phan-ngam-hao p {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.dung-than {
+    color: hotpink;
+    font-weight: bold;
+}
+
+.nguyen-than {
+    color: #1E90FF;
+    font-weight: bold;
+}
+
+.cuu-than {
+    color: green;
+    font-weight: bold;
+}
+
+.ky-than {
+    color: orange;
+    font-weight: bold;
+}
+
+.can-chi p {
+    padding-right: 10px;
+}
+
+.thang__nam {
+    text-align: center;
+    align-items: center;
+    border-style: solid;
+    padding: 10px 10px;
+    width: fit-content;
+    margin: 0 auto 10px;
+}
+
+// Check Tuong Que
+.ttvt_goc {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+// Table Que Goc
+table.table-search-goc td:nth-of-type(1) {width: 90px;}
+table.table-search-goc td:nth-of-type(2) {width: 120px;}
+table.table-search-goc td:nth-of-type(3) {width: 80px;}
+table.table-search-goc td:nth-of-type(4) {width: 80px;}  
+table.table-search-goc td:nth-of-type(5) {width: 150px;} 
+table.table-search-goc td:nth-of-type(6) {width: 190px;}    /*Setting the width of column 6 - Phuc Than.*/
+table.table-search-goc td:nth-of-type(7) {width: 100px;}
+table.table-search-goc td:nth-of-type(8) {width: 100px;}  
+table.table-search-goc td:nth-of-type(9) {width: 80px;} 
+table.table-search-goc td:nth-of-type(10) {width: 120px;} 
+
+// Table Que Bien
+table.table-que-bien td:nth-of-type(1) {width: 160px;}       /*Setting the width of column 1 - Luc Than.*/
+table.table-que-bien td:nth-of-type(2) {width: 380px;}       
+table.table-que-bien td:nth-of-type(3) {width: 160px;}
+table.table-que-bien td:nth-of-type(4) {width: 180px;}
+table.table-que-bien td:nth-of-type(5) {width: 180px;}
+
+.table-search-goc p {
+    margin: 0 !important;
+}
+
+
+// Image tuong sinh tuong khac
+.image-list img {
+    width: auto;
+}
+.responsive-img {
+    max-width: 100%;       /* Không vượt quá chiều rộng của container */
+    height: auto;          /* Tự động điều chỉnh chiều cao dựa trên tỷ lệ */
+    max-height: 200px;     /* Chiều cao tối đa để đồng đều */
+    object-fit: contain;   /* Đảm bảo hình ảnh không bị cắt */
+    margin: 0 auto;        /* Căn giữa nếu cần */
+}
+
+/* Media Query for iPhone 16 Pro Max */
+@media only screen and (max-width: 430px) {
+    .wrapper {
+        width: calc(100% - 10px);
+    }
+
+    .information__block {
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .phan-ngam,
+    .phan-ngam-hao {
+        width: 100%;
+    }
+
+    .phan-ngam-hao {
+        margin: 20px 0;
+        padding-left: 10px !important;
+    }
+}
+
+@media only screen and (max-width: 767.98px) {
+ .comparison_table {
+    display: block;
+ }
+}
+
+.address-list {
+    width: calc(100% - 40px);
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+@media print ,(max-width: 1199.98px) {
+    .address-list img {
+        margin: 20px 0;
+    }
+}
