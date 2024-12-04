@@ -344,7 +344,7 @@ export class QueComponent implements OnInit {
     // Đặt hào được chọn là "Dụng Thần"
     this.cloneQueGoc['phucThanHao' + selectedHao] = 'Dụng Thần';
 
-    // Lục Thân của phục thân hào được chọn, ví dụ: phục thân = "Thê Tài - Ngọ Hỏa" -> chỉ lấy "Thê Tài"
+    // phục thần của hào được chọn, ví dụ: phục thần = "Thê Tài - Ngọ Hỏa" -> chỉ lấy "Thê Tài"
     this.cloneQueGoc.lucThan.phuc = Array.from(
       { length: 6 },
       (_, i) => this.queGoc.lucThan[`phuc${i + 1}`] || ''
@@ -360,10 +360,13 @@ export class QueComponent implements OnInit {
     const biKhacLucThan = this.lucThanBiKhacRelations[selectedLucThan]; // Lục Thân Bị Khắc
 
     for (let i = 1; i <= 6; i++) {
-      if (i === selectedHao) continue; // Bỏ qua hào đã được chọn
-
+      // if (i === selectedHao) continue; // Bỏ qua hào đã được chọn
       const currentLucThan = this.queGoc.lucThan['hao' + i]; // Lục Thân của hào hiện tại
+      const currentPhucThan = this.queGoc.lucThan['phuc' + i]
+        .split('-')[0]
+        .trim(); // Phục Thần của hào hiện tại
 
+      // xét cho Lục Thân và Phục Thần của từng hào
       if (sinhLucThan === currentLucThan) {
         // Xác định Nguyên Thần (Dụng Thần ĐƯỢC SINH bởi)
         this.cloneQueGoc['thanHao' + i] =
@@ -375,10 +378,24 @@ export class QueComponent implements OnInit {
         // Xác định Kỵ Thần (khắc Dụng Thần)
         this.cloneQueGoc['thanHao' + i] = this.thanBiKhacRelations['Dụng Thần'];
       }
+
+      // xét cho Phục Thần của từng hào (nếu có)
+      if (sinhLucThan === currentPhucThan) {
+        // Xác định Nguyên Thần (Dụng Thần ĐƯỢC SINH bởi)
+        this.cloneQueGoc['phucThanHao' + i] =
+          this.thanDuocSinhRelations['Dụng Thần'];
+      } else if (khacLucThan === currentPhucThan) {
+        // Xác định Cừu Thần (bị Dụng Thần khắc)
+        this.cloneQueGoc['phucThanHao' + i] =
+          this.thanKhacRelations['Dụng Thần'];
+      } else if (biKhacLucThan === currentPhucThan) {
+        // Xác định Kỵ Thần (khắc Dụng Thần)
+        this.cloneQueGoc['phucThanHao' + i] =
+          this.thanBiKhacRelations['Dụng Thần'];
+      }
     }
   }
 
-  // Check Phản Ngâm Tượng Quẻ theo Cung
   phanNgamPairs = [
     ['CÀN', 'TỐN'],
     ['KHẢM', 'LY'],
@@ -519,9 +536,12 @@ export class QueComponent implements OnInit {
     const biKhacLucThan = this.lucThanBiKhacRelations[selectedLucThan]; // Lục Thân Bị Khắc
 
     for (let i = 1; i <= 6; i++) {
-      if (i === selectedHao) continue; // Bỏ qua hào đã được chọn
+      // if (i === selectedHao) continue; // Bỏ qua hào đã được chọn
 
       const currentLucThan = this.queGoc.lucThan['hao' + i]; // Lục Thân của hào hiện tại
+      const currentPhucThan = this.queGoc.lucThan['phuc' + i]
+        .split('-')[0]
+        .trim(); // Phục Thần của hào hiện tại
 
       if (sinhLucThan === currentLucThan) {
         // Xác định Nguyên Thần (Dụng Thần ĐƯỢC SINH bởi)
@@ -535,6 +555,21 @@ export class QueComponent implements OnInit {
         this.cloneQueGoc['thanHao' + i] = this.thanBiKhacRelations['Dụng Thần'];
       } else if (currentLucThan === selectedLucThan) {
         this.cloneQueGoc['thanHao' + i] = 'Dụng Thần';
+      }
+
+      // xét cho Phục Thần của từng hào (nếu có)
+      if (sinhLucThan === currentPhucThan) {
+        // Xác định Nguyên Thần (Dụng Thần ĐƯỢC SINH bởi)
+        this.cloneQueGoc['phucThanHao' + i] =
+          this.thanDuocSinhRelations['Dụng Thần'];
+      } else if (khacLucThan === currentPhucThan) {
+        // Xác định Cừu Thần (bị Dụng Thần khắc)
+        this.cloneQueGoc['phucThanHao' + i] =
+          this.thanKhacRelations['Dụng Thần'];
+      } else if (biKhacLucThan === currentPhucThan) {
+        // Xác định Kỵ Thần (khắc Dụng Thần)
+        this.cloneQueGoc['phucThanHao' + i] =
+          this.thanBiKhacRelations['Dụng Thần'];
       }
     }
   }

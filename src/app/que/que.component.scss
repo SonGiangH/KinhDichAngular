@@ -116,6 +116,7 @@
     border-spacing: 0;
     border-collapse: collapse;
     text-align: center;
+    white-space: nowrap;
 }
 
 .table-searchs-viewport::-webkit-scrollbar {
@@ -188,6 +189,11 @@
 
 .table-search-goc th {
     padding: 0 10px;
+    font-weight: bolder;
+}
+
+.table-search th {
+    font-weight: bolder;
 }
 
 table td {
@@ -332,6 +338,9 @@ table td {
         justify-content: unset;
         flex-direction: column;
     }
+    .table-ttvt {
+        width: 430px;
+    }
 }
 
 // Table Que Goc
@@ -340,7 +349,7 @@ table.table-search-goc td:nth-of-type(2) {width: 120px;}
 table.table-search-goc td:nth-of-type(3) {width: 80px;}
 table.table-search-goc td:nth-of-type(4) {width: 80px;}  
 table.table-search-goc td:nth-of-type(5) {width: 150px;} 
-table.table-search-goc td:nth-of-type(6) {width: 190px;}    /*Setting the width of column 6 - Phuc Than.*/
+table.table-search-goc td:nth-of-type(6) {width: 200px;}    /*Setting the width of column 6 - Phuc Than.*/
 table.table-search-goc td:nth-of-type(7) {width: 100px;}
 table.table-search-goc td:nth-of-type(8) {width: 100px;}  
 table.table-search-goc td:nth-of-type(9) {width: 80px;} 
